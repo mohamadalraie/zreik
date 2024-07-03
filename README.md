@@ -1,6 +1,6 @@
 # zreiq
 
-A new Flutter project.
+A Flutter project for zreiq transporting company.
 
 ## Getting Started
 
