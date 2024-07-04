@@ -6,6 +6,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('mohamad el malek',style: TextStyle(color: MyColors.myYellow),);
+    return Text(
+      'mohamad el malek',
+      style: TextStyle(color: MyColors.myYellow),
+    );
   }
 }
