@@ -20,7 +20,7 @@ class ZreiqApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: onBoardScreen,
+      initialRoute: splashScreen,
       onGenerateRoute: appRouter.generateRoute,
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zreiq/presentation/screens/auth/login_screen.dart';
 import 'package:zreiq/presentation/screens/home_screen.dart';
 import 'package:zreiq/presentation/screens/on_board_screen.dart';
+import 'package:zreiq/presentation/screens/splash_screen.dart';
 
 import 'constants/strings.dart';
 
@@ -13,8 +14,12 @@ class AppRouter {
 
       case onBoardScreen:
         return MaterialPageRoute(builder: (_) => OnBoardScreen());
+
       case loginScreen:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+
+      case splashScreen:
+        return MaterialPageRoute(builder: (_)=> SplashScreen());
     }
     return null;
   }

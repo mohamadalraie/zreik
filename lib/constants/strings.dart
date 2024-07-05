@@ -8,9 +8,12 @@ const String homePage = '/homepage';
 const String onBoardScreen = '/';
 const String loginScreen = '/login';
 const String registerScreen = '/register';
+const String splashScreen ='/splash';
+
+
+
 
 //screen dimensions
-
 final double physicalHeight =
     WidgetsBinding.instance.platformDispatcher.views.first.physicalSize.height;
 final double physicalWidth =
