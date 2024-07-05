@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/app_router.dart';
+import 'package:zreiq/constants/strings.dart';
 
 void main() {
   runApp( ZreiqApp(appRouter: AppRouter(),));
@@ -9,7 +10,6 @@ class ZreiqApp extends StatelessWidget {
   const ZreiqApp({super.key, required this.appRouter});
   
   final AppRouter appRouter;
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,7 @@ class ZreiqApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
+      initialRoute: onBoardScreen,
       onGenerateRoute: appRouter.generateRoute,
     );
   }

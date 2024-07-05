@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 const String baseUrl = '';
 
 //routes
-const String homePage = '/';
+const String homePage = '/homepage';
 const String onBoardScreen = '/';
+const String loginScreen = '/login';
+const String registerScreen = '/register';
 
 //screen dimensions
 

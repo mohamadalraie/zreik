@@ -16,19 +16,19 @@ class OnBoardScreen extends StatelessWidget {
             Container(
               width: myScreenWidth,
               height: myScreenHeight / 2,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: MyColors.myBlack,
                 borderRadius: BorderRadiusDirectional.vertical(
                     bottom: Radius.circular(80)),
               ),
             ),
-            Image(image: AssetImage("assets/images/big logo.png")),
+            const Image(image: AssetImage("assets/images/big logo.png")),
           ]),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
+          const Padding(
+            padding: EdgeInsets.all(5.0),
             child: Text(
               textAlign: TextAlign.left,
               "للنقل والتسويق السياحي",
@@ -39,9 +39,9 @@ class OnBoardScreen extends StatelessWidget {
               ),
             ),
           ),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
+          const Spacer(),
+          const Padding(
+            padding: EdgeInsets.all(5.0),
             child: Text(
               textAlign: TextAlign.left,
               "تطبيق لإدارة حجوزاتك الإلكترونية",
@@ -53,7 +53,7 @@ class OnBoardScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           MaterialButton(
@@ -61,8 +61,8 @@ class OnBoardScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
                     color: MyColors.myBlack),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
+                child: const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -86,8 +86,10 @@ class OnBoardScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {}),
-          SizedBox(
+              onPressed: () {
+                Navigator.of(context).pushNamed(loginScreen);
+              }),
+          const SizedBox(
             height: 30,
           )
         ],
