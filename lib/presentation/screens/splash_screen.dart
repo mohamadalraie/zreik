@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    Future.delayed(Duration(seconds: 2),() {
+    Future.delayed(const Duration(seconds: 2),() {
       Navigator.of(context).pushReplacementNamed(loginScreen);
     });
     super.initState();
@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: MyColors.myBlack,
       body: Center(
-        child: Image(image: AssetImage("assets/images/logo.png"),).animate( onPlay: (controller) => controller.repeat(),).fadeIn(duration: 1500.ms).then().fadeOut(duration: 1500.ms)
+        child: const Image(image: AssetImage("assets/images/logo.png"),).animate( onPlay: (controller) => controller.repeat(),).fadeIn(duration: 1200.ms).then().fadeOut(duration: 1200.ms)
       )
     );
   }
