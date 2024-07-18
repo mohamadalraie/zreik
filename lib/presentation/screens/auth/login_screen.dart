@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
+import 'package:zreiq/constants/strings.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -11,8 +12,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
-      // backgroundColor: MyColors.myBlack,
+      backgroundColor: MyColors.myBlack,
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
@@ -20,7 +20,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           children: [
             const Image(
-              height: 250,
+              height: 300,
               image: AssetImage("assets/images/big logo.png"),
             ),
             Padding(
@@ -32,7 +32,8 @@ class LoginScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     color: const Color(0xaaffffff)),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -80,42 +81,55 @@ class LoginScreen extends StatelessWidget {
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           child: MaterialButton(
                               color: MyColors.myBlack,
-                              onPressed: () {},
-                              child: const Text(
-                                "تسجيل الدخول",
-                                style: TextStyle(
-                                    fontFamily: "cairo",
-                                    color: MyColors.myYellow,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
+                              onPressed: () {
+                                Navigator.of(context).pushNamed(homePage);
+                              },
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  "تسجيل الدخول",
+                                  style: TextStyle(
+                                      fontFamily: "cairo",
+                                      color: MyColors.myYellow,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               )),
                         )),
                       ),
-                      Row(
-                        children: [
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text("تخطي",
-                                style: TextStyle(
-                                    fontFamily: "cairo",
-                                    fontSize: 14,
-                                    decoration: TextDecoration.underline)),
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Text("أتريد إنشاء حساب؟",
-                                style: TextStyle(
-                                    fontFamily: "cairo",
-                                    fontSize: 14,
-                                    decoration: TextDecoration.underline)),
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
               ),
+            ),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(homePage);
+                  },
+                  child: const Text("تخطي",
+                      style: TextStyle(
+                        fontFamily: "cairo",
+                        fontSize: 14,
+                        color: MyColors.myYellow,
+                        decorationColor: MyColors.myYellow,
+                        decoration: TextDecoration.underline,
+                      )),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text("أتريد إنشاء حساب؟",
+                      style: TextStyle(
+                        fontFamily: "cairo",
+                        fontSize: 14,
+                        color: MyColors.myYellow,
+                        decorationColor: MyColors.myYellow,
+                        decoration: TextDecoration.underline,
+                      )),
+                ),
+              ],
             )
           ],
         ),
