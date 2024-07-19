@@ -82,7 +82,8 @@ class LoginScreen extends StatelessWidget {
                           child: MaterialButton(
                               color: MyColors.myBlack,
                               onPressed: () {
-                                Navigator.of(context).pushNamed(homePage);
+                                Navigator.of(context)
+                                    .pushReplacementNamed(homePage);
                               },
                               child: const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
