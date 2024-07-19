@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/presentation/screens/auth/login_screen.dart';
+import 'package:zreiq/presentation/screens/auth/register_screen.dart';
 import 'package:zreiq/presentation/screens/home_screen.dart';
 import 'package:zreiq/presentation/screens/on_board_screen.dart';
 import 'package:zreiq/presentation/screens/splash_screen.dart';
@@ -20,6 +21,9 @@ class AppRouter {
 
       case splashScreen:
         return MaterialPageRoute(builder: (_)=> SplashScreen());
+
+      case registerScreen:
+        return MaterialPageRoute(builder: (_) => RegisterScreen());
     }
     return null;
   }
