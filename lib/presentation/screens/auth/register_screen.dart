@@ -16,181 +16,179 @@ class RegisterScreen extends StatelessWidget {
                   image: AssetImage("assets/images/4.jpg"), fit: BoxFit.fill)),
           child: Padding(
             padding: const EdgeInsets.only(top: 60, bottom: 0),
-            child: SingleChildScrollView(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: const Color(0xaaffffff)),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const Padding(
-                        padding: const EdgeInsets.only(right: 4, bottom: 2),
-                        child: const Text(
-                          "الإسم الأول",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: const Color(0xaaffffff)),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Padding(
+                      padding: const EdgeInsets.only(right: 4, bottom: 2),
+                      child: const Text(
+                        "الإسم الأول",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      TextFormField(
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
+                    ),
+                    TextFormField(
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text("الإسم الثاني",
+                          style: TextStyle(fontFamily: "cairo")),
+                    ),
+                    TextFormField(
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text(
+                        "إسم العائلة",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      const SizedBox(
-                        height: 6,
+                    ),
+                    TextFormField(
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text(
+                        "الإيميل",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text("الإسم الثاني",
-                            style: TextStyle(fontFamily: "cairo")),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.emailAddress,
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text(
+                        "رقم الموبايل",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      TextFormField(
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text(
+                        "الرقم الوطني",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      const SizedBox(
-                        height: 6,
+                    ),
+                    TextFormField(
+                      keyboardType: TextInputType.number,
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text(
+                        "كلمة المرور",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text(
-                          "إسم العائلة",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
+                    ),
+                    TextFormField(
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    const SizedBox(
+                      height: 6,
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 4, bottom: 2),
+                      child: Text(
+                        "تأكيد كلمة المرور",
+                        style: TextStyle(fontFamily: "cairo"),
                       ),
-                      TextFormField(
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text(
-                          "الإيميل",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text(
-                          "رقم الموبايل",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text(
-                          "الرقم الوطني",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
-                      ),
-                      TextFormField(
-                        keyboardType: TextInputType.number,
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text(
-                          "كلمة المرور",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
-                      ),
-                      TextFormField(
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                      ),
-                      const SizedBox(
-                        height: 6,
-                      ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 4, bottom: 2),
-                        child: Text(
-                          "تأكيد كلمة المرور",
-                          style: TextStyle(fontFamily: "cairo"),
-                        ),
-                      ),
-                      TextFormField(
-                        textDirection: TextDirection.rtl,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15.0),
-                        child: Center(
-                            child: Container(
-                          decoration: BoxDecoration(
-                              color: MyColors.myBlack,
-                              borderRadius:
-                                  BorderRadiusDirectional.circular(8)),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: MaterialButton(
-                              color: MyColors.myBlack,
-                              onPressed: () {
-                                Navigator.of(context).pushNamed(homePage);
-                              },
-                              child: const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Text(
-                                  "تسجيل الحساب",
-                                  style: TextStyle(
-                                      fontFamily: "cairo",
-                                      color: MyColors.myYellow,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              )),
-                        )),
-                      ),
-                    ],
-                  ),
+                    ),
+                    TextFormField(
+                      textDirection: TextDirection.rtl,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15.0),
+                      child: Center(
+                          child: Container(
+                        decoration: BoxDecoration(
+                            color: MyColors.myBlack,
+                            borderRadius:
+                                BorderRadiusDirectional.circular(8)),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: MaterialButton(
+                            color: MyColors.myBlack,
+                            onPressed: () {
+                              Navigator.of(context).pushNamed(homePage);
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Text(
+                                "تسجيل الحساب",
+                                style: TextStyle(
+                                    fontFamily: "cairo",
+                                    color: MyColors.myYellow,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+                      )),
+                    ),
+                  ],
                 ),
               ),
             ),
