@@ -123,7 +123,9 @@ class LoginScreen extends StatelessWidget {
                 ),
                 const Spacer(),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(registerScreen);
+                  },
                   child: const Text("أتريد إنشاء حساب؟",
                       style: TextStyle(
                         fontFamily: "cairo",

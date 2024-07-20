@@ -4,101 +4,92 @@ import '../../../constants/my_colors.dart';
 import '../../../constants/strings.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({super.key});
+   RegisterScreen({super.key});
+
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController secoundnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phonenumberController = TextEditingController();
+  TextEditingController idnumberController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmpasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
         body: Container(
+          height: myScreenHeight,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [MyColors.myBlack, Color(0xff222222)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           )),
-          child: Column(
-            children: [
-              const Text(
-                "سجل في تطبيقنا",
-                style: TextStyle(
-                    fontFamily: "cairo",
-                    fontSize: 30,
-                    color: MyColors.myYellow),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 5, vertical: 30),
-                child: Center(
-                  child: Container(
-                    width: myScreenWidth,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: const Color(0xaaffffff)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 8),
-                      child: Column(
-                        children: [
-                          Container(
-                            height: myScreenHeight * 0.7,
-                            child: SingleChildScrollView(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Padding(
+                  padding: const EdgeInsets.only(top: 8,left: 250),
+                  child: Text(
+                    ": إنشاء الحساب",
+                    style: TextStyle(color: MyColors.myYellow, fontSize: 20,fontFamily:"cairo" ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 5, vertical: 16),
+                  child: Center(
+                    child: Container(
+                      width: myScreenWidth,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: const Color(0xaaffffff)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 10),
+                        child: Column(
+                          children: [
+                            Container(
+                              height: myScreenHeight * 0.79,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Row(
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            const Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 4, bottom: 2),
-                                              child: const Text(
-                                                "الإسم الثاني",
-                                                style: TextStyle(
-                                                    fontFamily: "cairo"),
-                                              ),
-                                            ),
-                                            TextFormField(
-                                              textDirection: TextDirection.rtl,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              )),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 5,
-                                      ),
-                                      Expanded(
-                                        child: Column(
-                                          children: [
-                                            const Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 4, bottom: 2),
-                                              child: const Text(
-                                                "الإسم الأول",
-                                                style: TextStyle(
-                                                    fontFamily: "cairo"),
-                                              ),
-                                            ),
-                                            TextFormField(
-                                              textDirection: TextDirection.rtl,
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(8),
-                                              )),
-                                            ),
-                                          ],
-                                        ),
-                                      )
-                                    ],
+                                  const Padding(
+                                    padding:  EdgeInsets.only(
+                                        right: 4, bottom: 2),
+                                    child: const Text(
+                                      "الإسم الأول",
+                                      style: TextStyle(fontFamily: "cairo"),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: firstnameController,
+                                    textDirection: TextDirection.rtl,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    )),
+                                  ),
+                                  const SizedBox(
+                                    width: 5,
+                                  ),
+                                  const Padding(
+                                    padding:  EdgeInsets.only(
+                                        right: 4, bottom: 2),
+                                    child:  Text(
+                                      "الإسم الثاني",
+                                      style: TextStyle(fontFamily: "cairo"),
+                                    ),
+                                  ),
+                                  TextFormField(
+                                    controller: secoundnameController,
+                                    textDirection: TextDirection.rtl,
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    )),
                                   ),
                                   const SizedBox(
                                     height: 6,
@@ -112,6 +103,7 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: lastnameController,
                                     textDirection: TextDirection.rtl,
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(
@@ -130,6 +122,7 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     textDirection: TextDirection.rtl,
                                     decoration: InputDecoration(
@@ -149,6 +142,7 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: phonenumberController,
                                     keyboardType: TextInputType.number,
                                     textDirection: TextDirection.rtl,
                                     decoration: InputDecoration(
@@ -168,6 +162,7 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: idnumberController,
                                     keyboardType: TextInputType.number,
                                     textDirection: TextDirection.rtl,
                                     decoration: InputDecoration(
@@ -187,6 +182,7 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: passwordController,
                                     textDirection: TextDirection.rtl,
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(
@@ -205,6 +201,7 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   ),
                                   TextFormField(
+                                    controller: confirmpasswordController,
                                     textDirection: TextDirection.rtl,
                                     decoration: InputDecoration(
                                         border: OutlineInputBorder(
@@ -214,10 +211,7 @@ class RegisterScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Center(
+                            Center(
                                 child: Container(
                               decoration: BoxDecoration(
                                   color: MyColors.myBlack,
@@ -227,7 +221,7 @@ class RegisterScreen extends StatelessWidget {
                               child: MaterialButton(
                                   color: MyColors.myBlack,
                                   onPressed: () {
-                                    Navigator.of(context).pushNamed(homePage);
+                                    Navigator.of(context).pushNamed(accountConfirmScreen);
                                   },
                                   child: const Padding(
                                     padding:
@@ -242,14 +236,14 @@ class RegisterScreen extends StatelessWidget {
                                     ),
                                   )),
                             )),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

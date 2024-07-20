@@ -9,6 +9,8 @@ const String onBoardScreen = '/';
 const String loginScreen = '/login';
 const String registerScreen = '/register';
 const String splashScreen ='/splash';
+const String accountConfirmScreen ='/confirmregister';
+
 
 
 
