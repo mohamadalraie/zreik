@@ -17,6 +17,7 @@ dependencies:
   flutter_offline: ^3.0.1
   dio: ^5.5.0+1
   flutter_animate: ^4.5.0
+  dropdown_button2: ^2.3.9
 
 
 

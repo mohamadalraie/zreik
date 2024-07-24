@@ -22,7 +22,11 @@ class ZreiqApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo ',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: MyColors.myYellow),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: MyColors.myYellow,
+            onSecondary: MyColors.myGrey,
+            onSurface: MyColors.myGrey,
+            background: MyColors.myGrey),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
