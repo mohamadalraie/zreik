@@ -1,11 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
-import 'package:zreiq/presentation/screens/auth/register_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tab.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/my_reservations_tab.dart';
-
-import '../auth/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});

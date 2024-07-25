@@ -4,7 +4,7 @@ import '../../../constants/my_colors.dart';
 import '../../../constants/strings.dart';
 
 class RegisterScreen extends StatelessWidget {
-   RegisterScreen({super.key});
+  RegisterScreen({super.key});
 
   TextEditingController firstnameController = TextEditingController();
   TextEditingController secoundnameController = TextEditingController();
@@ -31,10 +31,13 @@ class RegisterScreen extends StatelessWidget {
             child: Column(
               children: [
                 const Padding(
-                  padding: const EdgeInsets.only(top: 8,left: 250),
+                  padding: EdgeInsets.only(top: 8, left: 250),
                   child: Text(
                     ": إنشاء الحساب",
-                    style: TextStyle(color: MyColors.myYellow, fontSize: 20,fontFamily:"cairo" ),
+                    style: TextStyle(
+                        color: MyColors.myYellow,
+                        fontSize: 20,
+                        fontFamily: "cairo"),
                   ),
                 ),
                 Padding(
@@ -57,9 +60,9 @@ class RegisterScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   const Padding(
-                                    padding:  EdgeInsets.only(
-                                        right: 4, bottom: 2),
-                                    child: const Text(
+                                    padding:
+                                        EdgeInsets.only(right: 4, bottom: 2),
+                                    child: Text(
                                       "الإسم الأول",
                                       style: TextStyle(fontFamily: "cairo"),
                                     ),
@@ -76,9 +79,9 @@ class RegisterScreen extends StatelessWidget {
                                     width: 5,
                                   ),
                                   const Padding(
-                                    padding:  EdgeInsets.only(
-                                        right: 4, bottom: 2),
-                                    child:  Text(
+                                    padding:
+                                        EdgeInsets.only(right: 4, bottom: 2),
+                                    child: Text(
                                       "الإسم الثاني",
                                       style: TextStyle(fontFamily: "cairo"),
                                     ),
@@ -221,7 +224,8 @@ class RegisterScreen extends StatelessWidget {
                               child: MaterialButton(
                                   color: MyColors.myBlack,
                                   onPressed: () {
-                                    Navigator.of(context).pushNamed(accountConfirmScreen);
+                                    Navigator.of(context)
+                                        .pushNamed(accountConfirmScreen);
                                   },
                                   child: const Padding(
                                     padding:

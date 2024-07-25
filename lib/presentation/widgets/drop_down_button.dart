@@ -1,11 +1,11 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 import '../../constants/my_colors.dart';
 import '../../constants/strings.dart';
 
-Widget MyDropButton(
+Widget myDropButton(
     {required List<String> items,
     required String? selectedValue,
     required void Function(String? value) onChange}) {
@@ -38,7 +38,7 @@ Widget MyDropButton(
         value: selectedValue,
         onChanged: onChange,
         buttonStyleData: ButtonStyleData(
-          height: 50,
+          height: myScreenHeight * 0.05,
           padding: const EdgeInsets.only(left: 14, right: 14),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(14),
