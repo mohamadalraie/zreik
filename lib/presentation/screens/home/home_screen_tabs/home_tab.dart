@@ -17,6 +17,7 @@ class _HomeTabState extends State<HomeTab> {
 
   String? fromSelectedValue, toSelectedValue;
   String selectedDate = DateTime.now().toString().split(" ")[0];
+  String travelsListDate = DateTime.now().toString().split(" ")[0];
 
   @override
   Widget build(BuildContext context) {
@@ -48,145 +49,184 @@ class _HomeTabState extends State<HomeTab> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              color: MyColors.myYellow,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 8.0),
-                      child: Text(
-                        "ابحث الآن عن رحلتك :",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            fontFamily: "cairo"),
-                      ),
-                    ),
-                    Row(
+            Stack(
+              children: [
+                Container(
+                  color: MyColors.myYellow,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "من :",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              fontFamily: "cairo"),
-                        ),
-                        const SizedBox(
-                          width: 35,
-                        ),
-                        myDropButton(
-                            items: items,
-                            selectedValue: fromSelectedValue,
-                            onChange: (String? value) {
-                              // TODO change setState to bloc
-                              setState(() {
-                                fromSelectedValue = value;
-                              });
-                            }),
-                        const SizedBox(
-                          width: 2,
-                        ),
-                        const Icon(
-                          Icons.location_on_outlined,
-                          size: 28,
-                          color: MyColors.myGrey,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        const Text(
-                          "إلى :",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              fontFamily: "cairo"),
-                        ),
-                        const SizedBox(
-                          width: 35,
-                        ),
-                        myDropButton(
-                            items: items,
-                            selectedValue: toSelectedValue,
-                            onChange: (String? value) {
-                              // TODO change setState to bloc
-                              setState(() {
-                                toSelectedValue = value;
-                              });
-                            }),
-                        const SizedBox(
-                          width: 2,
-                        ),
-                        const Icon(
-                          Icons.location_on,
-                          size: 28,
-                          color: MyColors.myGrey,
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        const Text(
-                          "التاريخ :",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              fontFamily: "cairo"),
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 10),
-                            child: InkWell(
-                              onTap: () async {
-                                // TODO change to bloc
-                                selectedDate =
-                                    await selectDate(context: context);
-                                setState(() {});
-                              },
-                              child: Container(
-                                  alignment: Alignment.centerRight,
-                                  height: myScreenHeight * 0.05,
-                                  decoration: BoxDecoration(
-                                    color: MyColors.myGrey,
-                                    borderRadius: BorderRadius.circular(14),
-                                    border: Border.all(
-                                      color: Colors.black26,
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(right: 14.0),
-                                    child: Text(
-                                      selectedDate,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: MyColors.myYellow,
-                                          fontSize: 16,
-                                          fontFamily: "cairo"),
-                                    ),
-                                  )),
-                            ),
+                        const Padding(
+                          padding: EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            "ابحث الآن عن رحلتك :",
+                            style: TextStyle(
+                                shadows: CupertinoContextMenu.kEndBoxShadow,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                                fontFamily: "cairo"),
                           ),
                         ),
-                        const SizedBox(
-                          width: 2,
+                        Row(
+                          children: [
+                            const Text(
+                              "من :",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  fontFamily: "cairo"),
+                            ),
+                            const SizedBox(
+                              width: 35,
+                            ),
+                            myDropButton(
+                                items: items,
+                                selectedValue: fromSelectedValue,
+                                onChange: (String? value) {
+                                  // TODO change setState to bloc
+                                  setState(() {
+                                    fromSelectedValue = value;
+                                  });
+                                }),
+                            const SizedBox(
+                              width: 2,
+                            ),
+                            const Icon(
+                              Icons.location_on_outlined,
+                              size: 28,
+                              color: MyColors.myGrey,
+                            ),
+                          ],
                         ),
-                        const Icon(
-                          Icons.date_range,
-                          size: 28,
-                          color: MyColors.myGrey,
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            const Text(
+                              "إلى :",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  fontFamily: "cairo"),
+                            ),
+                            const SizedBox(
+                              width: 35,
+                            ),
+                            myDropButton(
+                                items: items,
+                                selectedValue: toSelectedValue,
+                                onChange: (String? value) {
+                                  // TODO change setState to bloc
+                                  setState(() {
+                                    toSelectedValue = value;
+                                  });
+                                }),
+                            const SizedBox(
+                              width: 2,
+                            ),
+                            const Icon(
+                              Icons.location_on,
+                              size: 28,
+                              color: MyColors.myGrey,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            const Text(
+                              "التاريخ :",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  fontFamily: "cairo"),
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: InkWell(
+                                  onTap: () async {
+                                    // TODO change to bloc
+                                    selectedDate =
+                                        await selectDate(context: context);
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                      alignment: Alignment.centerRight,
+                                      height: myScreenHeight * 0.05,
+                                      decoration: BoxDecoration(
+                                        color: MyColors.myGrey,
+                                        borderRadius: BorderRadius.circular(14),
+                                        border: Border.all(
+                                          color: Colors.black26,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 14.0),
+                                        child: Text(
+                                          selectedDate,
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: MyColors.myYellow,
+                                              fontSize: 16,
+                                              fontFamily: "cairo"),
+                                        ),
+                                      )),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 2,
+                            ),
+                            const Icon(
+                              Icons.date_range,
+                              size: 28,
+                              color: MyColors.myGrey,
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 8.0, left: 28, right: 62),
+                          child: InkWell(
+                            onTap: () async {
+                              // TODO change to bloc
+                              selectedDate = await selectDate(context: context);
+                              setState(() {});
+                            },
+                            child: Container(
+                                alignment: Alignment.center,
+                                height: myScreenHeight * 0.05,
+                                decoration: BoxDecoration(
+                                  // color: MyColors.myGrey,
+                                  borderRadius: BorderRadius.circular(14),
+                                  border: Border.all(
+                                      color: Colors.black26, width: 2),
+                                ),
+                                child: Text(
+                                  "بحث",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: MyColors.myBlack,
+                                      fontSize: 16,
+                                      fontFamily: "cairo"),
+                                )),
+                          ),
                         ),
                       ],
-                    )
-                  ],
+                    ),
+                  ),
                 ),
-              ),
+                Positioned(
+                    left: 10,
+                    top: myScreenHeight * 0.09,
+                    child: const Icon(CupertinoIcons.arrow_down,
+                        color: MyColors.myGrey)),
+              ],
             ),
             const Padding(
               padding: EdgeInsets.only(top: 4.0),
@@ -196,7 +236,8 @@ class _HomeTabState extends State<HomeTab> {
                     fontWeight: FontWeight.w200,
                     fontSize: 14,
                     fontFamily: "cairo",
-                    color: Colors.white),
+                    color: Colors.white,
+                    shadows: CupertinoContextMenu.kEndBoxShadow),
               ),
             ),
             Padding(
@@ -215,8 +256,13 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                         Expanded(
                             child: TextButton(
-                          child: const Text("12,12,1212"),
-                          onPressed: () {},
+                          child: Text(travelsListDate),
+                          onPressed: () async {
+                            // TODO change to bloc
+                            travelsListDate =
+                                await selectDate(context: context);
+                            setState(() {});
+                          },
                         )),
                         IconButton(
                           icon: const Icon(CupertinoIcons.right_chevron),
@@ -230,7 +276,7 @@ class _HomeTabState extends State<HomeTab> {
                       height: 1,
                     ),
                     Container(
-                      height: myScreenHeight * 0.4,
+                      height: myScreenHeight * 0.45,
                       child: const SingleChildScrollView(
                         scrollDirection: Axis.vertical,
                         child: Column(
