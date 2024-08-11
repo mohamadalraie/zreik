@@ -20,6 +20,8 @@ dependencies:
   dropdown_button2: ^2.3.9
   flutter_localizations:
     sdk: flutter
+  fluttertoast: ^8.2.6
+  shared_preferences: ^2.3.1
 
 
 

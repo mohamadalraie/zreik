@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zreiq/business_logic/cubit/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/my_colors.dart';
-import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tab.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/home_tab.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/my_reservations_tab.dart';
 
+import '../../../data/apis/trips_by_date_api.dart';
+import '../../../data/repository/trips_by_date_repo.dart';
+
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  HomeScreen({super.key}) {}
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -13,8 +18,26 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
+  late TripsByDateRepository tripsByDateRepository;
+  late TripsByDateCubit tripsByDateCubit;
 
-  final List<Widget> tabs = [HomeTab(), MyReservationsTab()];
+  late List<Widget> tabs;
+
+  @override
+  void initState() {
+    super.initState();
+
+    tripsByDateRepository = TripsByDateRepository(TripsByDateApi());
+    tripsByDateCubit = TripsByDateCubit(tripsByDateRepository);
+
+    tabs = [
+      BlocProvider(
+        create: (BuildContext context) => tripsByDateCubit,
+        child: HomeTab(),
+      ),
+      MyReservationsTab()
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: (index) {
             // TODO: convert setState to bloc
 
-            setState(() {});
+            // setState(() {});
             _currentIndex = index;
           },
         ),

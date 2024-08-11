@@ -5,8 +5,11 @@ import 'package:zreiq/app_router.dart';
 import 'package:zreiq/constants/strings.dart';
 
 import 'constants/my_colors.dart';
+import 'constants/shared_preferences.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.init();
   runApp(ZreiqApp(
     appRouter: AppRouter(),
   ));

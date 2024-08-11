@@ -1,9 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zreiq/business_logic/cubit/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/presentation/widgets/drop_down_button.dart';
-import '../../../../constants/my_colors.dart';
-import '../../../widgets/time_picker.dart';
+import 'package:zreiq/presentation/widgets/travel.dart';
+import '../../../../../constants/my_colors.dart';
+import '../../../../widgets/time_picker.dart';
 
 class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
@@ -13,11 +16,59 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  final List<String> items = ["دمشق", "حلب", "اللاذقية"];
+  final List<String> items = ["حمص", "دمشق", "حلب", "اللاذقية"];
 
   String? fromSelectedValue, toSelectedValue;
-  String selectedDate = DateTime.now().toString().split(" ")[0];
-  String travelsListDate = DateTime.now().toString().split(" ")[0];
+  DateTime selectedDate = DateTime.now();
+  DateTime travelsListDate = DateTime.now();
+
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final cubit = context.read<TripsByDateCubit>();
+      cubit.getTrips(date: travelsListDate.toString().split(" ")[0]);
+    });
+  }
+
+  Widget tripsBlocBuilder() {
+    return BlocBuilder<TripsByDateCubit, TripsByDateState>(
+        builder: (context, state) {
+      if (state is TripsLoading ||
+          state is TripsByDateInitial ||
+          state is TripsError) {
+        return const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(child: CircularProgressIndicator()),
+        );
+      } else if (state is TripsLoaded) {
+        final trips = state.tripsState;
+        if (trips.data == null) {
+          return const Center(
+            child: Text(
+              "there is no tomorrow",
+              style: TextStyle(
+                fontFamily: "cairo",
+                fontWeight: FontWeight.bold,
+                color: MyColors.myLightGrey,
+                fontSize: 22,
+              ),
+            ),
+          );
+        }
+        return ListView.builder(
+            itemCount: trips.data!.length,
+            itemBuilder: (context, index) {
+              final trip = trips.data![index];
+              return travel(trip, context);
+            });
+      }
+      return Center(
+        child: Text(state.toString()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +102,6 @@ class _HomeTabState extends State<HomeTab> {
             SliverAppBar(
               backgroundColor: MyColors.myGrey,
               automaticallyImplyLeading: false,
-              // pinned: true,
               floating: true,
               expandedHeight: myScreenHeight * 0.25 + 118,
               flexibleSpace: FlexibleSpaceBar(
@@ -178,7 +228,9 @@ class _HomeTabState extends State<HomeTab> {
                                                 padding: const EdgeInsets.only(
                                                     right: 14.0),
                                                 child: Text(
-                                                  selectedDate,
+                                                  selectedDate
+                                                      .toString()
+                                                      .split(" ")[0],
                                                   style: const TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold,
@@ -236,13 +288,13 @@ class _HomeTabState extends State<HomeTab> {
                         ),
                         Positioned(
                             left: 10,
-                            top: myScreenHeight * 0.09,
+                            top: myScreenHeight * 0.092,
                             child: const Icon(CupertinoIcons.arrow_down,
                                 color: MyColors.myGrey)),
                       ],
                     ),
                     const Padding(
-                      padding: EdgeInsets.only(top: 4.0),
+                      padding: EdgeInsets.only(top: 2.0),
                       child: Text(
                         "الرحلات المتاحة",
                         style: TextStyle(
@@ -255,10 +307,10 @@ class _HomeTabState extends State<HomeTab> {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 12.0, vertical: 4.0),
+                          horizontal: 4.0, vertical: 4.0),
                       child: Container(
                         decoration: BoxDecoration(
-                            color: const Color(0xb0ffffff),
+                            color: MyColors.myLightGrey,
                             borderRadius: BorderRadius.circular(14)),
                         child: Column(
                           children: [
@@ -266,28 +318,70 @@ class _HomeTabState extends State<HomeTab> {
                               children: [
                                 IconButton(
                                   icon: const Icon(CupertinoIcons.left_chevron),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // todo bloc instead of setState
+
+                                    if (travelsListDate.day >
+                                        DateTime.now().day) {
+                                      setState(() {});
+                                      travelsListDate = travelsListDate
+                                          .subtract(const Duration(days: 1));
+                                      WidgetsBinding.instance
+                                          .addPostFrameCallback((timeStamp) {
+                                        final cubit =
+                                            context.read<TripsByDateCubit>();
+                                        cubit.getTrips(
+                                            date: travelsListDate
+                                                .toString()
+                                                .split(" ")[0]);
+                                      });
+                                    }
+                                  },
                                 ),
                                 Expanded(
                                     child: TextButton(
                                   child: Text(
-                                    travelsListDate,
+                                    travelsListDate.toString().split(" ")[0],
                                     style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
-                                        fontFamily: "cairo"),
+                                        fontFamily: "cairo",
+                                        color: Colors.white),
                                   ),
                                   onPressed: () async {
 // TODO change to bloc
                                     travelsListDate =
                                         await selectDate(context: context);
                                     setState(() {});
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((timeStamp) {
+                                      final cubit =
+                                          context.read<TripsByDateCubit>();
+                                      cubit.getTrips(
+                                          date: travelsListDate
+                                              .toString()
+                                              .split(" ")[0]);
+                                    });
                                   },
                                 )),
                                 IconButton(
                                   icon:
                                       const Icon(CupertinoIcons.right_chevron),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    // todo bloc instead of setState
+                                    setState(() {});
+                                    travelsListDate = travelsListDate
+                                        .add(const Duration(days: 1));
+                                    WidgetsBinding.instance
+                                        .addPostFrameCallback((timeStamp) {
+                                      final cubit =
+                                          context.read<TripsByDateCubit>();
+                                      cubit.getTrips(
+                                          date: travelsListDate
+                                              .toString()
+                                              .split(" ")[0]);
+                                    });
+                                  },
                                 ),
                               ],
                             ),
@@ -300,16 +394,10 @@ class _HomeTabState extends State<HomeTab> {
               ),
             ),
             SliverList(
-                delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) => ListTile(
-                          title: Text(
-                            ' s',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                    childCount: 190)),
+              delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) => tripsBlocBuilder(),
+                  childCount: 1),
+            )
           ],
         ),
       ),
