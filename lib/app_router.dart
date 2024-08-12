@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:zreiq/business_logic/cubit/trips_by_date_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zreiq/business_logic/cubit/trip_details/trip_details_cubit.dart';
+import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
+import 'package:zreiq/data/apis/trip_details_api.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
+import 'package:zreiq/data/repository/trip_detail_repo.dart';
 import 'package:zreiq/data/repository/trips_by_date_repo.dart';
 import 'package:zreiq/presentation/screens/auth/AccountConfirmation_screen.dart';
 import 'package:zreiq/presentation/screens/auth/login_screen.dart';
@@ -15,6 +19,14 @@ import 'constants/strings.dart';
 import 'data/apis/trips_by_date_api.dart';
 
 class AppRouter {
+  late TripDetailsRepo tripDetailsRepo;
+  late TripDetailsCubit tripDetailsCubit;
+
+  AppRouter() {
+    tripDetailsRepo = TripDetailsRepo(TripDetailsApi());
+    tripDetailsCubit = TripDetailsCubit(tripDetailsRepo);
+  }
+
   Route? generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case homePage:
@@ -35,8 +47,16 @@ class AppRouter {
       case accountConfirmScreen:
         return MaterialPageRoute(builder: (_) => AccountconfirmationScreen());
 
-      // case bookingScreen:
-      //   return MaterialPageRoute(builder: (_) => BookingScreen());
+      case bookingScreen:
+        final Trip trip = settings.arguments as Trip;
+
+        return MaterialPageRoute(
+            builder: (_) => BlocProvider(
+                  create: (context) => tripDetailsCubit,
+                  child: BookingScreen(
+                    trip: trip,
+                  ),
+                ));
 
       case travelSearchResultsScreen:
         return MaterialPageRoute(builder: (_) => TravelSearchResultScreen());

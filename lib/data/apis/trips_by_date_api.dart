@@ -11,7 +11,6 @@ class TripsByDateApi {
     var data = {'date': date};
     var dio = Dio();
     String url = "${baseUrl}showTrips";
-    print(url);
 
     var response = await dio.request(
       url,
@@ -23,7 +22,7 @@ class TripsByDateApi {
     );
 
     if (response.statusCode == 200) {
-      print(response.data);
+      print(response.data['data'].length);
 
       return TripsByDateModel.fromJson(response.data);
     } else {

@@ -4,8 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zreiq/constants/strings.dart';
+import 'package:zreiq/presentation/widgets/toast.dart';
 
-import '../../constants/shared_preferences.dart';
+import '../../../constants/shared_preferences.dart';
 
 class LogoutApi {
   Future logout() async {
@@ -14,7 +15,7 @@ class LogoutApi {
       'Authorization': Prefs.getToken()
     };
     var dio = Dio();
-    var url = '${baseUrl}logout';
+    String url = '${baseUrl}logout';
 
     var response = await dio.request(
       url,
@@ -39,14 +40,7 @@ class LogoutApi {
       return true;
     } else {
       if (response.data['message'] != null) {
-        Fluttertoast.showToast(
-            msg: response.data['message'],
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        flutterToast(msg: response.data['message'].toString());
       }
     }
   }

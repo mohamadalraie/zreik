@@ -4,7 +4,7 @@ import 'package:zreiq/data/models/trips_by_date_model.dart';
 
 import '../../constants/strings.dart';
 
-Widget travel(Data trip, BuildContext context) {
+Widget travel(Trip trip, BuildContext context) {
   return Padding(
     padding: const EdgeInsets.all(4.0),
     child: Container(
@@ -13,7 +13,7 @@ Widget travel(Data trip, BuildContext context) {
       child: Column(
         children: [
           Text(
-            trip.date!,
+            trip.date!.substring(0, 10),
             style: const TextStyle(
               fontWeight: FontWeight.w200,
               fontSize: 16,
@@ -40,7 +40,7 @@ Widget travel(Data trip, BuildContext context) {
                     ),
                   ),
                   Text(
-                    trip.startTrip!,
+                    trip.startTrip!.substring(11, 16),
                     style: const TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 16,
@@ -91,7 +91,7 @@ Widget travel(Data trip, BuildContext context) {
                     ),
                   ),
                   Text(
-                    "${trip.date} ل.س",
+                    "${trip.id} ل.س",
                     style: const TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 16,
@@ -118,7 +118,7 @@ Widget travel(Data trip, BuildContext context) {
                     ),
                   ),
                   Text(
-                    trip.endTrip!,
+                    trip.endTrip!.substring(11, 16),
                     style: const TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 16,
@@ -153,7 +153,7 @@ Widget travel(Data trip, BuildContext context) {
             padding: const EdgeInsets.all(8),
             child: MaterialButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(bookingScreen);
+                Navigator.of(context).pushNamed(bookingScreen, arguments: trip);
               },
               child: Container(
                   alignment: Alignment.center,
@@ -161,7 +161,7 @@ Widget travel(Data trip, BuildContext context) {
                   decoration: BoxDecoration(
                     // color: MyColors.myGrey,
                     borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: MyColors.myYellow, width: 2),
+                    border: Border.all(color: MyColors.myYellow, width: 1),
                   ),
                   child: const Text(
                     "احجز الآن",

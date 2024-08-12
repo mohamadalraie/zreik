@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/data/models/register_model.dart';
+import 'package:zreiq/presentation/widgets/toast.dart';
 
-import '../../constants/shared_preferences.dart';
+import '../../../constants/shared_preferences.dart';
 
 class RegisterApi {
   Future<bool> register(RegisterModel registerModel) async {
@@ -52,23 +53,9 @@ class RegisterApi {
       return true;
     } else {
       if (response.data['message'] != null) {
-        Fluttertoast.showToast(
-            msg: response.data['message'],
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        flutterToast(msg: response.data['message']);
       } else {
-        Fluttertoast.showToast(
-            msg: response.data['errors'].toString(),
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
+        flutterToast(msg: response.data['errors'].toString());
       }
       return false;
     }

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zreiq/business_logic/cubit/trips_by_date_cubit.dart';
+import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/home_tab.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/my_reservations_tab.dart';

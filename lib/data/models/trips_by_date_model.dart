@@ -1,5 +1,5 @@
 class TripsByDateModel {
-  List<Data>? data;
+  List<Trip>? data;
   String? msg;
   int? status;
 
@@ -7,9 +7,9 @@ class TripsByDateModel {
 
   TripsByDateModel.fromJson(Map<String, dynamic> json) {
     if (json['data'] != 'null' && json['data'] != null) {
-      data = <Data>[];
+      data = <Trip>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new Trip.fromJson(v));
       });
     }
     msg = json['msg'];
@@ -27,7 +27,7 @@ class TripsByDateModel {
   }
 }
 
-class Data {
+class Trip {
   int? id;
   String? date;
   String? startTrip;
@@ -37,7 +37,7 @@ class Data {
   FromTo? fromTo;
   Bus? bus;
 
-  Data(
+  Trip(
       {this.id,
       this.date,
       this.startTrip,
@@ -47,7 +47,7 @@ class Data {
       this.fromTo,
       this.bus});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Trip.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     date = json['date'];
     startTrip = json['start_trip'];

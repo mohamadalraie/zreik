@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zreiq/business_logic/cubit/trips_by_date_cubit.dart';
+import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/presentation/widgets/drop_down_button.dart';
 import 'package:zreiq/presentation/widgets/travel.dart';
@@ -58,6 +58,7 @@ class _HomeTabState extends State<HomeTab> {
           );
         }
         return ListView.builder(
+            shrinkWrap: true,
             itemCount: trips.data!.length,
             itemBuilder: (context, index) {
               final trip = trips.data![index];
