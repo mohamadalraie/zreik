@@ -9,7 +9,7 @@ class TripDetailsApi {
   Future<dynamic> getTripDetails(Trip trip) async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Prefs.getToken()
+      'Authorization': 'Bearer ${Prefs.getToken()}'
     };
     var dio = Dio();
     String url = '${baseUrl}showDetailsTrip/${trip.id}';
@@ -26,6 +26,7 @@ class TripDetailsApi {
       print(response.data.toString());
       return TripDetailsModel.fromJson(response.data);
     } else {
+      print(response.data.toString());
       print(response.statusMessage);
     }
   }

@@ -45,15 +45,48 @@ class _HomeTabState extends State<HomeTab> {
       } else if (state is TripsLoaded) {
         final trips = state.tripsState;
         if (trips.data == null) {
-          return const Center(
-            child: Text(
-              "there is no tomorrow",
-              style: TextStyle(
-                fontFamily: "cairo",
-                fontWeight: FontWeight.bold,
-                color: MyColors.myLightGrey,
-                fontSize: 22,
-              ),
+          return Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "لا يوجد رحلات في هذا اليوم",
+                  style: TextStyle(
+                    fontFamily: "cairo",
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.myLightGrey,
+                    fontSize: 14,
+                  ),
+                ),
+                const Text(
+                  textAlign: TextAlign.center,
+                  "يمكنك إضافة تذكير و في حال تم إنشاء رحلة في هذا اليوم سيصلك إشعار للحجز ",
+                  style: TextStyle(
+                    fontFamily: "cairo",
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.myLightGrey,
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                MaterialButton(
+                  onPressed: () {},
+                  color: MyColors.myYellow,
+                  child: const Text(
+                    "إنشاء تذكير",
+                    style: TextStyle(
+                      fontFamily: "cairo",
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.myLightGrey,
+                      fontSize: 14,
+                    ),
+                  ),
+                )
+              ],
             ),
           );
         }

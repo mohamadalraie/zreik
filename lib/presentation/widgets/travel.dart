@@ -73,13 +73,16 @@ Widget travel(Trip trip, BuildContext context) {
                   child: Column(
                 children: [
                   Text(
-                    trip.bus!.type!,
+                    trip.bus!.type!.toUpperCase(),
                     style: const TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 14,
                       fontFamily: "cairo",
                       color: MyColors.myYellow,
                     ),
+                  ),
+                  const SizedBox(
+                    height: 20,
                   ),
                   const Text(
                     "سعر التذكرة",
@@ -91,7 +94,7 @@ Widget travel(Trip trip, BuildContext context) {
                     ),
                   ),
                   Text(
-                    "${trip.id} ل.س",
+                    "${trip.id}200 ل.س",
                     style: const TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 16,

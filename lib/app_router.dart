@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zreiq/business_logic/cubit/trip_details/trip_details_cubit.dart';
 import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
 import 'package:zreiq/data/apis/trip_details_api.dart';
+import 'package:zreiq/data/models/book_a_trip_model.dart';
+import 'package:zreiq/data/models/trip_details_model.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
 import 'package:zreiq/data/repository/trip_detail_repo.dart';
 import 'package:zreiq/data/repository/trips_by_date_repo.dart';
@@ -14,6 +16,7 @@ import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_conten
 import 'package:zreiq/presentation/screens/home/travel_search_result_screen.dart';
 import 'package:zreiq/presentation/screens/on_board_screen.dart';
 import 'package:zreiq/presentation/screens/splash_screen.dart';
+import 'package:zreiq/presentation/widgets/booking_form.dart';
 
 import 'constants/strings.dart';
 import 'data/apis/trips_by_date_api.dart';
