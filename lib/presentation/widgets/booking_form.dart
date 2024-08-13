@@ -28,6 +28,8 @@ class BookingForm extends StatefulWidget {
 }
 
 class _BookingFormState extends State<BookingForm> {
+  late Buses bus;
+
   var formKey = GlobalKey<FormState>();
   TextEditingController fNameController = TextEditingController();
 
@@ -39,7 +41,14 @@ class _BookingFormState extends State<BookingForm> {
 
   TextEditingController chairController = TextEditingController();
 
-  Buses bus = Buses();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    bus = Buses(
+        busChairsCount: widget.trip.data!.tripDetails![0].bus!.chairCount!,
+        unavailableChairs: widget.trip.data!.unavailableChair!);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -209,85 +218,139 @@ class _BookingFormState extends State<BookingForm> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 4.0, horizontal: 4.0),
-                                  child: Container(
-                                    width: 26,
-                                    height: 34,
-                                    color: Colors.transparent,
-                                    child: const Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Icon(CupertinoIcons.rectangle,
-                                              size: 26, color: Colors.black),
-                                          Icon(CupertinoIcons.app_fill,
-                                              size: 30, color: Colors.red),
-                                          Positioned(
-                                            top: 19,
-                                            child: Icon(
-                                              CupertinoIcons.capsule_fill,
-                                              color: Colors.red,
-                                              size: 16,
-                                            ),
-                                          ),
-                                        ]),
+                            Container(
+                              width: 150,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 8),
+                                        child: Text(
+                                          "مقعد محجوز",
+                                          style: TextStyle(
+                                              fontFamily: "cairo",
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0, horizontal: 4.0),
+                                        child: Container(
+                                          width: 26,
+                                          height: 34,
+                                          color: Colors.transparent,
+                                          child: const Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Icon(CupertinoIcons.rectangle,
+                                                    size: 26,
+                                                    color: Colors.black),
+                                                Icon(CupertinoIcons.app_fill,
+                                                    size: 30,
+                                                    color: Colors.red),
+                                                Positioned(
+                                                  top: 19,
+                                                  child: Icon(
+                                                    CupertinoIcons.capsule_fill,
+                                                    color: Colors.red,
+                                                    size: 16,
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 8),
-                                  child: Text(
-                                    "مقعد محجوز",
-                                    style: TextStyle(
-                                        fontFamily: "cairo",
-                                        color: Colors.white),
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 8),
+                                        child: Text(
+                                          "مقعد متاح",
+                                          style: TextStyle(
+                                              fontFamily: "cairo",
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0, horizontal: 4.0),
+                                        child: Container(
+                                          width: 26,
+                                          height: 34,
+                                          color: Colors.transparent,
+                                          child: const Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Icon(CupertinoIcons.rectangle,
+                                                    size: 26,
+                                                    color: MyColors.myYellow),
+                                                Icon(CupertinoIcons.app_fill,
+                                                    size: 30,
+                                                    color:
+                                                        MyColors.myLightGrey),
+                                                Positioned(
+                                                  top: 19,
+                                                  child: Icon(
+                                                    CupertinoIcons.capsule_fill,
+                                                    color: MyColors.myYellow,
+                                                    size: 16,
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 4.0, horizontal: 4.0),
-                                  child: Container(
-                                    width: 26,
-                                    height: 34,
-                                    color: Colors.transparent,
-                                    child: const Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Icon(CupertinoIcons.rectangle,
-                                              size: 26,
-                                              color: MyColors.myYellow),
-                                          Icon(CupertinoIcons.app_fill,
-                                              size: 30,
-                                              color: MyColors.myLightGrey),
-                                          Positioned(
-                                            top: 19,
-                                            child: Icon(
-                                              CupertinoIcons.capsule_fill,
-                                              color: MyColors.myYellow,
-                                              size: 16,
-                                            ),
-                                          ),
-                                        ]),
+                                  Row(
+                                    children: [
+                                      const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 8),
+                                        child: Text(
+                                          "المقعد المختار",
+                                          style: TextStyle(
+                                              fontFamily: "cairo",
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 4.0, horizontal: 4.0),
+                                        child: Container(
+                                          width: 26,
+                                          height: 34,
+                                          color: Colors.transparent,
+                                          child: const Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Icon(CupertinoIcons.rectangle,
+                                                    size: 26,
+                                                    color: MyColors.myYellow),
+                                                Icon(CupertinoIcons.app_fill,
+                                                    size: 30,
+                                                    color: Colors.green),
+                                                Positioned(
+                                                  top: 19,
+                                                  child: Icon(
+                                                    CupertinoIcons.capsule_fill,
+                                                    color: MyColors.myYellow,
+                                                    size: 16,
+                                                  ),
+                                                ),
+                                              ]),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 8, vertical: 8),
-                                  child: Text(
-                                    "مقعد متاح",
-                                    style: TextStyle(
-                                        fontFamily: "cairo",
-                                        color: Colors.white),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
@@ -331,14 +394,7 @@ class _BookingFormState extends State<BookingForm> {
                           ],
                         ),
                         const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: widget.trip.data!.tripDetails![0].bus!
-                                      .chairCount ==
-                                  28
-                              ? bus.bus28(widget.trip.data!.unavailableChair!)
-                              : bus.bus50(widget.trip.data!.unavailableChair!),
-                        ),
+                        Padding(padding: const EdgeInsets.all(8), child: bus),
                       ],
                     ),
                     Row(
@@ -350,13 +406,6 @@ class _BookingFormState extends State<BookingForm> {
                                 color: MyColors.myYellow,
                                 onPressed: () {
                                   if (formKey.currentState!.validate()) {
-                                    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-                                    //   final cubit = context.read<BookATripCubit>();
-                                    //   final BookATripRequestModel bookATripRequestModel = BookATripRequestModel(
-                                    //       passengers:);
-                                    //   cubit.book(bookATripRequestModel, tripId)
-                                    // });
-
                                     Passengers p = Passengers(
                                         firstName: fNameController.text,
                                         midName: mNameController.text,
@@ -365,7 +414,7 @@ class _BookingFormState extends State<BookingForm> {
                                         chairNum: chairController.text);
 
                                     widget.passengers.add(p);
-
+                                    print(widget.passengers.length);
                                     Navigator.of(context)
                                         .push(MaterialPageRoute(
                                       builder: (context) => BlocProvider(
@@ -391,6 +440,8 @@ class _BookingFormState extends State<BookingForm> {
                             child: MaterialButton(
                                 color: MyColors.myYellow,
                                 onPressed: () {
+                                  chairController.text =
+                                      bus.selectedChair.toString();
                                   if (formKey.currentState!.validate()) {
                                     Passengers p = Passengers(
                                         firstName: fNameController.text,
