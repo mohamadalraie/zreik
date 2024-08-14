@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/constants/validate_funcs.dart';
+import 'package:zreiq/data/models/login_model.dart';
+import 'package:zreiq/presentation/widgets/toast.dart';
 
 import '../../../data/apis/auth/login_api.dart';
 
@@ -88,14 +90,23 @@ class LoginScreen extends StatelessWidget {
                                 color: MyColors.myBlack,
                                 onPressed: () async {
                                   if (formKey.currentState!.validate()) {
-                                    bool isLogged = await LoginAPI().login(
-                                        emailController.text,
-                                        passwordController.text);
-                                    if (isLogged) {
+
+
+                                    LoginRequestModel loginRequestModel = LoginRequestModel(email: emailController.text,password: passwordController.text);
+
+
+                                   if(await LoginApi().login(loginRequestModel: loginRequestModel)){
                                       Navigator.of(context)
                                           .pushReplacementNamed(homePage);
-                                    }
                                   }
+                                   else{
+                                     flutterToast(msg: "username or pass is not true");
+                                   }
+
+                                  }
+
+
+
                                 },
                                 child: const Padding(
                                   padding:

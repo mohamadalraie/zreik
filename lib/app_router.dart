@@ -13,6 +13,9 @@ import 'package:zreiq/presentation/screens/auth/login_screen.dart';
 import 'package:zreiq/presentation/screens/auth/register_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/booking_screen.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/more_tap_offical.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile_edit.dart';
 import 'package:zreiq/presentation/screens/home/travel_search_result_screen.dart';
 import 'package:zreiq/presentation/screens/on_board_screen.dart';
 import 'package:zreiq/presentation/screens/splash_screen.dart';
@@ -49,6 +52,15 @@ class AppRouter {
 
       case accountConfirmScreen:
         return MaterialPageRoute(builder: (_) => AccountconfirmationScreen());
+
+      case moreTabOffical:
+        return MaterialPageRoute(builder: (_) => MoreTapOffical());
+
+      case profile:
+        return MaterialPageRoute(builder: (_) => Profile());
+
+
+
 
       case bookingScreen:
         final Trip trip = settings.arguments as Trip;

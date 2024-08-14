@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zreiq/constants/validate_funcs.dart';
+
 import 'package:zreiq/data/models/register_model.dart';
 import '../../../constants/my_colors.dart';
 import '../../../constants/strings.dart';
