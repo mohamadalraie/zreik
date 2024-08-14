@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:zreiq/constants/strings.dart';
 
-import '../../constants/shared_preferences.dart';
-import '../models/book_a_trip_model.dart';
+import '../../../constants/shared_preferences.dart';
+import '../../models/book_a_trip_model.dart';
 
 class BookATripApi {
   Future<dynamic> bookATrip(

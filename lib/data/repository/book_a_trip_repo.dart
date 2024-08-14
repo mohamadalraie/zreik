@@ -1,4 +1,4 @@
-import 'package:zreiq/data/apis/book_a_trip_api.dart';
+import 'package:zreiq/data/apis/booking/book_a_trip_api.dart';
 import 'package:zreiq/data/models/book_a_trip_model.dart';
 
 class BookATripRepo {

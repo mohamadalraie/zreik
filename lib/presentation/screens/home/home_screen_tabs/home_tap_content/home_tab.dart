@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/strings.dart';
+import 'package:zreiq/data/apis/add_alert_api.dart';
+import 'package:zreiq/data/apis/search_for_trip_api.dart';
 import 'package:zreiq/presentation/widgets/drop_down_button.dart';
+import 'package:zreiq/presentation/widgets/toast.dart';
 import 'package:zreiq/presentation/widgets/travel.dart';
 import '../../../../../constants/my_colors.dart';
 import '../../../../widgets/time_picker.dart';
@@ -21,6 +24,7 @@ class _HomeTabState extends State<HomeTab> {
   String? fromSelectedValue, toSelectedValue;
   DateTime selectedDate = DateTime.now();
   DateTime travelsListDate = DateTime.now();
+  bool withDate = true;
 
   @override
   void initState() {
@@ -29,78 +33,6 @@ class _HomeTabState extends State<HomeTab> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       final cubit = context.read<TripsByDateCubit>();
       cubit.getTrips(date: travelsListDate.toString().split(" ")[0]);
-    });
-  }
-
-  Widget tripsBlocBuilder() {
-    return BlocBuilder<TripsByDateCubit, TripsByDateState>(
-        builder: (context, state) {
-      if (state is TripsLoading ||
-          state is TripsByDateInitial ||
-          state is TripsError) {
-        return const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(child: CircularProgressIndicator()),
-        );
-      } else if (state is TripsLoaded) {
-        final trips = state.tripsState;
-        if (trips.data == null) {
-          return Center(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "لا يوجد رحلات في هذا اليوم",
-                  style: TextStyle(
-                    fontFamily: "cairo",
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.myLightGrey,
-                    fontSize: 14,
-                  ),
-                ),
-                const Text(
-                  textAlign: TextAlign.center,
-                  "يمكنك إضافة تذكير و في حال تم إنشاء رحلة في هذا اليوم سيصلك إشعار للحجز ",
-                  style: TextStyle(
-                    fontFamily: "cairo",
-                    fontWeight: FontWeight.bold,
-                    color: MyColors.myLightGrey,
-                    fontSize: 10,
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                MaterialButton(
-                  onPressed: () {},
-                  color: MyColors.myYellow,
-                  child: const Text(
-                    "إنشاء تذكير",
-                    style: TextStyle(
-                      fontFamily: "cairo",
-                      fontWeight: FontWeight.bold,
-                      color: MyColors.myLightGrey,
-                      fontSize: 14,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          );
-        }
-        return ListView.builder(
-            shrinkWrap: true,
-            itemCount: trips.data!.length,
-            itemBuilder: (context, index) {
-              final trip = trips.data![index];
-              return travel(trip, context);
-            });
-      }
-      return Center(
-        child: Text(state.toString()),
-      );
     });
   }
 
@@ -226,6 +158,7 @@ class _HomeTabState extends State<HomeTab> {
                                   ],
                                 ),
                                 Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     const Text(
                                       "التاريخ :",
@@ -245,6 +178,7 @@ class _HomeTabState extends State<HomeTab> {
                                             // TODO change to bloc
                                             selectedDate = await selectDate(
                                                 context: context);
+                                            withDate = !withDate;
                                             setState(() {});
                                           },
                                           child: Container(
@@ -258,20 +192,50 @@ class _HomeTabState extends State<HomeTab> {
                                                   color: Colors.black26,
                                                 ),
                                               ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 14.0),
-                                                child: Text(
-                                                  selectedDate
-                                                      .toString()
-                                                      .split(" ")[0],
-                                                  style: const TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: MyColors.myYellow,
-                                                      fontSize: 16,
-                                                      fontFamily: "cairo"),
-                                                ),
+                                              child: Row(
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            right: 14.0),
+                                                    child: Text(
+                                                      selectedDate
+                                                          .toString()
+                                                          .split(" ")[0],
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: withDate
+                                                              ? MyColors
+                                                                  .myYellow
+                                                              : MyColors.myGrey,
+                                                          fontSize: 16,
+                                                          fontFamily: "cairo"),
+                                                    ),
+                                                  ),
+                                                  const Spacer(),
+                                                  IconButton(
+                                                    icon: !withDate
+                                                        ? const Icon(
+                                                            CupertinoIcons
+                                                                .check_mark,
+                                                            color: MyColors
+                                                                .myYellow,
+                                                            size: 20,
+                                                          )
+                                                        : const Icon(
+                                                            CupertinoIcons
+                                                                .xmark,
+                                                            color: MyColors
+                                                                .myYellow,
+                                                            size: 20,
+                                                          ),
+                                                    onPressed: () {
+                                                      withDate = !withDate;
+                                                      setState(() {});
+                                                    },
+                                                  )
+                                                ],
                                               )),
                                         ),
                                       ),
@@ -279,10 +243,13 @@ class _HomeTabState extends State<HomeTab> {
                                     const SizedBox(
                                       width: 2,
                                     ),
-                                    const Icon(
-                                      Icons.date_range,
-                                      size: 28,
-                                      color: MyColors.myGrey,
+                                    const Padding(
+                                      padding: EdgeInsets.only(top: 8.0),
+                                      child: Icon(
+                                        Icons.date_range,
+                                        size: 28,
+                                        color: MyColors.myGrey,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -291,10 +258,24 @@ class _HomeTabState extends State<HomeTab> {
                                       top: 8.0, left: 28, right: 62),
                                   child: InkWell(
                                     onTap: () async {
-                                      // TODO change to bloc
-                                      selectedDate =
-                                          await selectDate(context: context);
-                                      setState(() {});
+                                      if (fromSelectedValue == null ||
+                                          toSelectedValue == null) {
+                                        flutterToast(msg: 'ادخل من و إلى أولا');
+                                      } else {
+                                        if (withDate) {
+                                          SearchForTripApi().searchWithDate(
+                                              source: fromSelectedValue!,
+                                              destination: toSelectedValue!,
+                                              date: selectedDate
+                                                  .toString()
+                                                  .split(" ")[0]);
+                                        } else {
+                                          SearchForTripApi().searchWithoutDate(
+                                            source: fromSelectedValue!,
+                                            destination: toSelectedValue!,
+                                          );
+                                        }
+                                      }
                                     },
                                     child: Container(
                                         alignment: Alignment.center,
@@ -353,8 +334,6 @@ class _HomeTabState extends State<HomeTab> {
                                 IconButton(
                                   icon: const Icon(CupertinoIcons.left_chevron),
                                   onPressed: () {
-                                    // todo bloc instead of setState
-
                                     if (travelsListDate.day >
                                         DateTime.now().day) {
                                       setState(() {});
@@ -436,5 +415,81 @@ class _HomeTabState extends State<HomeTab> {
         ),
       ),
     );
+  }
+
+  Widget tripsBlocBuilder() {
+    return BlocBuilder<TripsByDateCubit, TripsByDateState>(
+        builder: (context, state) {
+      if (state is TripsLoading ||
+          state is TripsByDateInitial ||
+          state is TripsError) {
+        return const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(child: CircularProgressIndicator()),
+        );
+      } else if (state is TripsLoaded) {
+        final trips = state.tripsState;
+        if (trips.data == null) {
+          return Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                const Text(
+                  "لا يوجد رحلات في هذا اليوم",
+                  style: TextStyle(
+                    fontFamily: "cairo",
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.myLightGrey,
+                    fontSize: 14,
+                  ),
+                ),
+                const Text(
+                  textAlign: TextAlign.center,
+                  "يمكنك إضافة تذكير و في حال تم إنشاء رحلة في هذا اليوم سيصلك إشعار للحجز ",
+                  style: TextStyle(
+                    fontFamily: "cairo",
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.myLightGrey,
+                    fontSize: 10,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                MaterialButton(
+                  onPressed: () {
+                    AddAlertApi().addAlertApi(
+                        date: travelsListDate.toString().split(" ")[0]);
+                  },
+                  color: MyColors.myYellow,
+                  child: const Text(
+                    "إنشاء تذكير",
+                    style: TextStyle(
+                      fontFamily: "cairo",
+                      fontWeight: FontWeight.bold,
+                      color: MyColors.myLightGrey,
+                      fontSize: 14,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+        return ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: trips.data!.length,
+            itemBuilder: (context, index) {
+              final trip = trips.data![index];
+              return travel(trip, context);
+            });
+      }
+      return Center(
+        child: Text(state.toString()),
+      );
+    });
   }
 }

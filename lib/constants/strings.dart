@@ -14,6 +14,7 @@ const String travelSearchResultsScreen =
     '/homepage/homeTap/travelsSearchResults';
 const String bookingScreen = '/homepage/booking';
 const String bookingForm = '/homepage/bookingForm';
+const String payForBookScreen = '/homepage/bookingForm/payForBooking';
 
 //screen dimensions
 final double physicalHeight =

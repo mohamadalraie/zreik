@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
-
 import '../../constants/strings.dart';
 
 Widget travel(Trip trip, BuildContext context) {

@@ -10,7 +10,7 @@ class Buses extends StatefulWidget {
   final int busChairsCount;
   final List<int> unavailableChairs;
 
-  late int selectedChair;
+  int selectedChair = 0;
 
   @override
   State<Buses> createState() => _BusesState();
@@ -27,10 +27,10 @@ class _BusesState extends State<Buses> {
     );
   }
 
-  Widget busChair(
-      {required bool isReserved,
-      required int chairNumber,
-      bool isSelected = false}) {
+  Widget busChair({
+    required bool isReserved,
+    required int chairNumber,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
       child: InkWell(
@@ -44,7 +44,7 @@ class _BusesState extends State<Buses> {
                 size: 30,
                 color: isReserved
                     ? Colors.red
-                    : isSelected
+                    : widget.selectedChair == chairNumber
                         ? Colors.green
                         : Colors.grey),
             Positioned(
@@ -66,9 +66,10 @@ class _BusesState extends State<Buses> {
         ),
         onTap: () {
           print(chairNumber);
-          widget.selectedChair = chairNumber;
-          isSelected = true;
-          setState(() {});
+          if (!isReserved) {
+            widget.selectedChair = chairNumber;
+            setState(() {});
+          }
         },
       ),
     );
