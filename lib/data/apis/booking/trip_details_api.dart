@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:zreiq/data/models/trip_details_model.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
 
-import '../../constants/shared_preferences.dart';
-import '../../constants/strings.dart';
+import '../../../constants/shared_preferences.dart';
+import '../../../constants/strings.dart';
 
 class TripDetailsApi {
   Future<dynamic> getTripDetails(Trip trip) async {

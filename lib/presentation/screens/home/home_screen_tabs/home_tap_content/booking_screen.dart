@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zreiq/business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
-import 'package:zreiq/data/apis/book_a_trip_api.dart';
+import 'package:zreiq/data/apis/booking/book_a_trip_api.dart';
 import 'package:zreiq/data/models/book_a_trip_model.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
 import 'package:zreiq/data/repository/book_a_trip_repo.dart';
 import 'package:zreiq/presentation/widgets/booking_form.dart';
-import 'package:zreiq/presentation/widgets/bus.dart';
 import '../../../../../business_logic/cubit/trip_details/trip_details_cubit.dart';
 import '../../../../../constants/my_colors.dart';
 
@@ -20,9 +19,6 @@ class BookingScreen extends StatefulWidget {
 }
 
 class _BookingScreenState extends State<BookingScreen> {
-  late BookATripCubit bookATripCubit;
-  late BookATripRepo bookATripRepo;
-
   BookATripRequestModel bookATripRequestModel = BookATripRequestModel();
 
   @override
@@ -33,9 +29,6 @@ class _BookingScreenState extends State<BookingScreen> {
       final cubit = context.read<TripDetailsCubit>();
       cubit.getDetails(trip: widget.trip);
     });
-
-    bookATripRepo = BookATripRepo(BookATripApi());
-    bookATripCubit = BookATripCubit(bookATripRepo);
   }
 
   @override
@@ -389,13 +382,10 @@ class _BookingScreenState extends State<BookingScreen> {
                           ],
                         ),
                       ),
-                      BlocProvider(
-                        create: (context) => BookATripCubit(bookATripRepo),
-                        child: BookingForm(
-                          trip: tripDetails,
-                          passengers: [],
-                          tripId: widget.trip.id!,
-                        ),
+                      BookingForm(
+                        trip: tripDetails,
+                        passengers: [],
+                        tripId: widget.trip.id!,
                       ),
                     ],
                   ),
