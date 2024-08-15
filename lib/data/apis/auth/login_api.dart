@@ -1,18 +1,20 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:zreiq/data/models/login_model.dart';
 import '../../../constants/shared_preferences.dart';
+import '../../../constants/strings.dart';
 
-class LoginAPI {
-  Future<bool> login(String email, String password) async {
+class LoginApi {
+  Future<bool> login({required LoginRequestModel loginRequestModel}) async {
     var headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     };
-    var data = {'email': email, 'password': password};
-
+    var data = loginRequestModel.toJson();
     var dio = Dio();
+    String url = '${baseUrl}logout';
     var response = await dio.request(
-      'http://192.168.1.105:8000/user/login',
+      url,
       options: Options(
         method: 'POST',
         headers: headers,
@@ -32,10 +34,11 @@ class LoginAPI {
 
     if (response.statusCode == 201) {
       print(json.encode(response.data));
+      LoginResponseModel loginResponseModel =
+          LoginResponseModel.fromJson(response.data);
 
-      String token = response.data['data']['token'].toString();
-      Prefs.setToken(token);
-      print(response.data['data']['token'].toString());
+      var aa = loginResponseModel.data!.token;
+      Prefs.setToken(aa);
       return true;
     } else {
       print(response.statusMessage);

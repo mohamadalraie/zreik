@@ -33,6 +33,7 @@ class LogoutApi {
 
     if (response.statusCode == 200) {
       Prefs.setToken(null);
+      print("mango");
       return true;
     } else {
       if (response.data['message'] != null) {
