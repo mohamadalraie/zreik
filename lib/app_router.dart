@@ -11,6 +11,8 @@ import 'package:zreiq/presentation/screens/auth/register_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/booking_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/pay_for_booking_screen.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/more_tap_offical.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile.dart';
 import 'package:zreiq/presentation/screens/on_board_screen.dart';
 import 'package:zreiq/presentation/screens/splash_screen.dart';
 import 'business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
@@ -57,8 +59,7 @@ class AppRouter {
         final Trip trip = settings.arguments as Trip;
 
         return MaterialPageRoute(
-            builder: (_) =>
-                BlocProvider.value(
+            builder: (_) => BlocProvider.value(
                   value: tripDetailsCubit,
                   child: BookingScreen(
                     trip: trip,
@@ -67,30 +68,32 @@ class AppRouter {
 
       case payForBookScreen:
         final BookingArguments bookingArguments =
-        settings.arguments as BookingArguments;
+            settings.arguments as BookingArguments;
 
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider.value(
-                value: bookATripCubit,
-                // create: (context) => bookATripCubit,
-                child: PayForBookingScreen(
-                  tripId: bookingArguments.tripId,
-                  passengers: bookingArguments.passengers,
-                ),
-              ),
+          builder: (_) => BlocProvider.value(
+            value: bookATripCubit,
+            // create: (context) => bookATripCubit,
+            child: PayForBookingScreen(
+              tripId: bookingArguments.tripId,
+              passengers: bookingArguments.passengers,
+            ),
+          ),
         );
 
+      case moreTabOffical:
+        return MaterialPageRoute(builder: (_) => MoreTapOffical());
 
-
+      case profile:
+        return MaterialPageRoute(builder: (_) => Profile());
     }
     return null;
   }
 }
 
-  class BookingArguments {
+class BookingArguments {
   final List<Passengers> passengers;
   final int tripId;
 
   BookingArguments(this.passengers, this.tripId);
-  }
+}
