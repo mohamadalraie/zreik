@@ -17,7 +17,7 @@ const String bookingForm = '/homepage/bookingForm';
 const String moreTabOffical = '/homepage/moreTabOffical';
 const String profile = '/homepage/moreTabOffical/profile';
 const String profileEdit = '/homepage/moreTabOffical/profile/profileEdit';
-
+const String payForBookScreen = '/homepage/bookingForm/payForBooking';
 
 //screen dimensions
 final double physicalHeight =

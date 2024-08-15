@@ -90,23 +90,20 @@ class LoginScreen extends StatelessWidget {
                                 color: MyColors.myBlack,
                                 onPressed: () async {
                                   if (formKey.currentState!.validate()) {
+                                    LoginRequestModel loginRequestModel =
+                                        LoginRequestModel(
+                                            email: emailController.text,
+                                            password: passwordController.text);
 
-
-                                    LoginRequestModel loginRequestModel = LoginRequestModel(email: emailController.text,password: passwordController.text);
-
-
-                                   if(await LoginApi().login(loginRequestModel: loginRequestModel)){
+                                    if (await LoginApi().login(
+                                        loginRequestModel: loginRequestModel)) {
                                       Navigator.of(context)
                                           .pushReplacementNamed(homePage);
+                                    } else {
+                                      flutterToast(
+                                          msg: "username or pass is not true");
+                                    }
                                   }
-                                   else{
-                                     flutterToast(msg: "username or pass is not true");
-                                   }
-
-                                  }
-
-
-
                                 },
                                 child: const Padding(
                                   padding:
