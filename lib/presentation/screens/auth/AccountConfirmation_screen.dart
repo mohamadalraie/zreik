@@ -1,11 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/my_colors.dart';
 import '../../../constants/strings.dart';
 
-class AccountconfirmationScreen extends StatelessWidget {
-  AccountconfirmationScreen({super.key});
+class AccountConfirmationScreen extends StatelessWidget {
+  AccountConfirmationScreen({super.key});
 
   TextEditingController confirmNumberController = TextEditingController();
 
@@ -45,7 +44,7 @@ class AccountconfirmationScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 30),
-                      Container(
+                      SizedBox(
                         width: 300,
                         child: TextFormField(
                           keyboardType: TextInputType.number,

@@ -1,18 +1,13 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/data/models/register_model.dart';
 import 'package:zreiq/presentation/widgets/toast.dart';
-
 import '../../../constants/shared_preferences.dart';
 
 class RegisterApi {
   Future<bool> register(RegisterModel registerModel) async {
     var headers = {'Accept': 'application/json'};
-    print(registerModel.birthDate);
+
     var data = {
       'Fname': registerModel.firstName,
       'Mname': registerModel.fatherName,

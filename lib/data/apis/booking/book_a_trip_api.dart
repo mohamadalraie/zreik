@@ -19,7 +19,6 @@ class BookATripApi {
     var dio = Dio();
     String url = '${baseUrl}bookingTrip/$tripId';
 
-    print(url);
     print(model.toJson());
 
     var response = await dio.request(

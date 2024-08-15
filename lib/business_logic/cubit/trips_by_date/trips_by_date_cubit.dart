@@ -9,7 +9,9 @@ part 'trips_by_date_state.dart';
 class TripsByDateCubit extends Cubit<TripsByDateState> {
   final TripsByDateRepository tripsByDateRepository;
 
-  TripsByDateCubit(this.tripsByDateRepository) : super(TripsByDateInitial());
+  TripsByDateCubit(
+    this.tripsByDateRepository,
+  ) : super(TripsByDateInitial());
 
   Future<void> getTrips({required String date}) async {
     emit(TripsLoading());

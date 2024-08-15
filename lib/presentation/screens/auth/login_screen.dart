@@ -1,10 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/constants/validate_funcs.dart';
-
 import '../../../data/apis/auth/login_api.dart';
 
 class LoginScreen extends StatelessWidget {

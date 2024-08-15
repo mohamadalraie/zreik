@@ -26,7 +26,6 @@ class TripDetailsApi {
       print(response.data.toString());
       return TripDetailsModel.fromJson(response.data);
     } else {
-      print(response.data.toString());
       print(response.statusMessage);
     }
   }

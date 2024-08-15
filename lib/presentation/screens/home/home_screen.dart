@@ -5,12 +5,11 @@ import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dar
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/home_tab.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/my_reservations_tab.dart';
-
 import '../../../data/apis/trips_by_date_api.dart';
 import '../../../data/repository/trips_by_date_repo.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key}) {}
+  HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -33,9 +32,9 @@ class _HomeScreenState extends State<HomeScreen> {
     tabs = [
       BlocProvider(
         create: (BuildContext context) => tripsByDateCubit,
-        child: HomeTab(),
+        child: const HomeTab(),
       ),
-      MyReservationsTab()
+      const MyReservationsTab()
     ];
   }
 
@@ -63,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: (index) {
             // TODO: convert setState to bloc
 
-            // setState(() {});
+            setState(() {});
             _currentIndex = index;
           },
         ),

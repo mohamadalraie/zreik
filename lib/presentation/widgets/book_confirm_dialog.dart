@@ -1,9 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zreiq/business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
-import 'package:zreiq/business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
-
 import '../../app_router.dart';
 import '../../constants/my_colors.dart';
 import '../../constants/strings.dart';

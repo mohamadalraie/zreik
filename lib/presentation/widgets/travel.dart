@@ -47,7 +47,7 @@ Widget travel(Trip trip, BuildContext context) {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   const Text(
                     "من مدينة",
                     style: TextStyle(

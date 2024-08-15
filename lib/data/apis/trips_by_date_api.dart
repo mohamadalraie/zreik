@@ -11,7 +11,7 @@ class TripsByDateApi {
     var data = {'date': date};
     var dio = Dio();
     String url = "${baseUrl}showTrips";
-
+    print('travel');
     var response = await dio.request(
       url,
       options: Options(

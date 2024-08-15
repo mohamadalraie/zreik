@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zreiq/app_router.dart';
 import 'package:zreiq/business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
@@ -214,7 +213,7 @@ class _BookingFormState extends State<BookingForm> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Column(
                             children: [

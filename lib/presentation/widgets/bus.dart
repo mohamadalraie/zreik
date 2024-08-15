@@ -248,7 +248,7 @@ class _BusesState extends State<Buses> {
         decoration: BoxDecoration(
             color: MyColors.myLightGrey,
             borderRadius: BorderRadius.circular(5),
-            border: BorderDirectional()),
+            border: const BorderDirectional()),
         height: 450,
         width: 136,
         child: Column(

@@ -7,7 +7,6 @@ import '../../constants/shared_preferences.dart';
 
 class AddAlertApi {
   Future<dynamic> addAlertApi({required String date}) async {
-    print(date);
     var headers = {
       'Authorization': 'Bearer ${Prefs.getToken()}',
     };

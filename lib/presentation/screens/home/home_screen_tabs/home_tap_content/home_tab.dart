@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zreiq/business_logic/cubit/search_for_trip/search_for_trip_cubit.dart';
 import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/data/apis/add_alert_api.dart';
 import 'package:zreiq/data/apis/search_for_trip_api.dart';
+import 'package:zreiq/data/repository/search_for_trip_repo.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/search_results.dart';
 import 'package:zreiq/presentation/widgets/drop_down_button.dart';
 import 'package:zreiq/presentation/widgets/toast.dart';
 import 'package:zreiq/presentation/widgets/travel.dart';
@@ -19,6 +22,9 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+  late SearchForTripRepo searchForTripRepo;
+  late SearchForTripCubit searchForTripCubit;
+
   final List<String> items = ["حمص", "دمشق", "حلب", "اللاذقية"];
 
   String? fromSelectedValue, toSelectedValue;
@@ -34,6 +40,9 @@ class _HomeTabState extends State<HomeTab> {
       final cubit = context.read<TripsByDateCubit>();
       cubit.getTrips(date: travelsListDate.toString().split(" ")[0]);
     });
+
+    searchForTripRepo = SearchForTripRepo(SearchForTripApi());
+    searchForTripCubit = SearchForTripCubit(searchForTripRepo);
   }
 
   @override
@@ -263,16 +272,37 @@ class _HomeTabState extends State<HomeTab> {
                                         flutterToast(msg: 'ادخل من و إلى أولا');
                                       } else {
                                         if (withDate) {
-                                          SearchForTripApi().searchWithDate(
-                                              source: fromSelectedValue!,
-                                              destination: toSelectedValue!,
-                                              date: selectedDate
-                                                  .toString()
-                                                  .split(" ")[0]);
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BlocProvider<
+                                                      SearchForTripCubit>(
+                                                create: (context) =>
+                                                    searchForTripCubit,
+                                                child: SearchResults(
+                                                  from: fromSelectedValue!,
+                                                  to: toSelectedValue!,
+                                                  date: selectedDate
+                                                      .toString()
+                                                      .split(" ")[0],
+                                                ),
+                                              ),
+                                            ),
+                                          );
                                         } else {
-                                          SearchForTripApi().searchWithoutDate(
-                                            source: fromSelectedValue!,
-                                            destination: toSelectedValue!,
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  BlocProvider<
+                                                      SearchForTripCubit>(
+                                                create: (context) =>
+                                                    searchForTripCubit,
+                                                child: SearchResults(
+                                                  from: fromSelectedValue!,
+                                                  to: toSelectedValue!,
+                                                ),
+                                              ),
+                                            ),
                                           );
                                         }
                                       }
@@ -339,6 +369,7 @@ class _HomeTabState extends State<HomeTab> {
                                       setState(() {});
                                       travelsListDate = travelsListDate
                                           .subtract(const Duration(days: 1));
+
                                       WidgetsBinding.instance
                                           .addPostFrameCallback((timeStamp) {
                                         final cubit =
@@ -437,7 +468,7 @@ class _HomeTabState extends State<HomeTab> {
                   height: 10,
                 ),
                 const Text(
-                  "لا يوجد رحلات في هذا اليوم",
+                  "لا توجد رحلات في هذا اليوم",
                   style: TextStyle(
                     fontFamily: "cairo",
                     fontWeight: FontWeight.bold,

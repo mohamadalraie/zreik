@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:zreiq/business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
-import 'package:zreiq/data/apis/booking/book_a_trip_api.dart';
 import 'package:zreiq/data/models/book_a_trip_model.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
-import 'package:zreiq/data/repository/book_a_trip_repo.dart';
 import 'package:zreiq/presentation/widgets/booking_form.dart';
 import '../../../../../business_logic/cubit/trip_details/trip_details_cubit.dart';
 import '../../../../../constants/my_colors.dart';
