@@ -22,6 +22,7 @@ class TripDetailsApi {
       ),
     );
 
+    print(response.data);
     if (response.statusCode == 200) {
       print(response.data.toString());
       return TripDetailsModel.fromJson(response.data);

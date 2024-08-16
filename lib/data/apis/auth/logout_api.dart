@@ -8,7 +8,7 @@ class LogoutApi {
   Future logout() async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': Prefs.getToken()
+      'Authorization': 'Bearer ${Prefs.getToken()}'
     };
     var dio = Dio();
     String url = '${baseUrl}logout';

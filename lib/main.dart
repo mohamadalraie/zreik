@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'package:zreiq/app_router.dart';
 import 'package:zreiq/constants/strings.dart';
 
 import 'constants/my_colors.dart';
 import 'constants/shared_preferences.dart';
+import 'data/stripe_payment/stripe_keys.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Stripe.publishableKey = StripeKeys.publishableKey;
+  Stripe.merchantIdentifier = 'mohamad';
+  await Stripe.instance.applySettings();
+
   await Prefs.init();
+
   runApp(ZreiqApp(
     appRouter: AppRouter(),
   ));

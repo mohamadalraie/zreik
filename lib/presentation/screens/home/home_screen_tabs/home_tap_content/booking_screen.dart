@@ -306,7 +306,8 @@ class _BookingScreenState extends State<BookingScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '${tripDetails.data!.tripDetails![0].driver!.fname} ${tripDetails.data!.tripDetails![0].driver!.lname}',
+                                  'f',
+                                  // '${tripDetails.data!.tripDetails![0].driver!.fname} ${tripDetails.data!.tripDetails![0].driver!.lname}',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w200,
                                     fontSize: 14,

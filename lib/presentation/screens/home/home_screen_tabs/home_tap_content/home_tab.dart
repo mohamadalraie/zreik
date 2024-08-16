@@ -275,10 +275,8 @@ class _HomeTabState extends State<HomeTab> {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  BlocProvider<
-                                                      SearchForTripCubit>(
-                                                create: (context) =>
-                                                    searchForTripCubit,
+                                                  BlocProvider.value(
+                                                value: searchForTripCubit,
                                                 child: SearchResults(
                                                   from: fromSelectedValue!,
                                                   to: toSelectedValue!,
