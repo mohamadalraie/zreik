@@ -396,7 +396,10 @@ class _PayForBookingScreenState extends State<PayForBookingScreen> {
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
-                                      title: Text('طفي ال vpn وبعدا اكبس تم'),
+                                      title: Text(
+                                        'طفي ال vpn وبعدا اكبس تم',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
                                       actions: [
                                         MaterialButton(
                                           onPressed: () async {

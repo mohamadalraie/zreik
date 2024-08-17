@@ -20,10 +20,9 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
 
   Future<void> gettrip() async {
     trip11 = await ShowMyReservationApi().showMyReservationapi();
-    for (int i = 0; i < trip11.data!.length; i++) {
-      var trip = trip11.data![i];
-
-      if (trip.trip!.status == 'wait' || trip.trip!.status == 'progress') {
+    for (var trip in trip11.data!) {
+      if (trip.trip!.status!.toLowerCase() == 'wait' ||
+          trip.trip!.status!.toLowerCase() == 'progress') {
         waitandprogress.add(trip);
       } else if (trip.trip!.status == 'done') {
         done.add(trip);
@@ -50,9 +49,9 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
           automaticallyImplyLeading: false,
           titleSpacing: 0.0,
           toolbarHeight: 0,
-          bottom: TabBar(
+          bottom: const TabBar(
             tabs: [
-              const Tab(
+              Tab(
                 text: "الحالية",
                 icon: Icon(Icons.directions_bus),
               ),
@@ -92,10 +91,10 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
                     : RefreshIndicator(
                         onRefresh: gettrip,
                         child: ListView.builder(
-                            itemCount: done.length,
+                            itemCount: waitandprogress.length,
                             itemBuilder: (context, i) {
                               return travel11(
-                                  data: done[i], context: context);
+                                  data: waitandprogress[i], context: context);
                             }),
                       ),
             loading
@@ -125,11 +124,11 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
                     : RefreshIndicator(
                         onRefresh: gettrip,
                         child: ListView.builder(
-                            itemCount: trip11.data!.length,
-                            itemBuilder: (context, i) {
-                              return travel11(
-                                  data: trip11.data![i], context: context);
-                            }),
+                          itemCount: done.length,
+                          itemBuilder: (context, i) {
+                            return travel11(data: done[i], context: context);
+                          },
+                        ),
                       ),
           ],
         ),
