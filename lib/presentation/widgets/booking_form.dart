@@ -11,11 +11,13 @@ import 'package:zreiq/data/models/trip_details_model.dart';
 import 'package:zreiq/data/repository/book_a_trip_repo.dart';
 import 'package:zreiq/presentation/widgets/bus.dart';
 import 'package:zreiq/presentation/widgets/toast.dart';
+import '../../app_router.dart';
 import 'book_confirm_dialog.dart';
 
 class BookingForm extends StatefulWidget {
   BookingForm(
       {super.key,
+      required this.ticketCost,
       required this.trip,
       required this.passengers,
       required this.tripId});
@@ -23,6 +25,7 @@ class BookingForm extends StatefulWidget {
   final TripDetailsModel trip;
   List<Passengers> passengers;
   final int tripId;
+  final int ticketCost;
 
   @override
   State<BookingForm> createState() => _BookingFormState();
@@ -385,6 +388,7 @@ class _BookingFormState extends State<BookingForm> {
                                     create: (context) => BookATripCubit(
                                         BookATripRepo(BookATripApi())),
                                     child: BookingForm(
+                                      ticketCost: widget.ticketCost,
                                       tripId: widget.tripId,
                                       passengers: widget.passengers,
                                       trip: widget.trip,
@@ -427,9 +431,16 @@ class _BookingFormState extends State<BookingForm> {
                                 showDialog(
                                     context: context,
                                     builder: (context) => bookConfirmDialog(
+                                        ticketCost: widget.ticketCost,
                                         passengers: widget.passengers,
                                         tripId: widget.tripId,
                                         context: context));
+                                Navigator.of(context).pushReplacementNamed(
+                                    payForBookScreen,
+                                    arguments: BookingArguments(
+                                        widget.passengers,
+                                        widget.tripId,
+                                        widget.ticketCost));
                               }
                             },
                             child: const Text(

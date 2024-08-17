@@ -93,7 +93,7 @@ Widget travel(Trip trip, BuildContext context) {
                     ),
                   ),
                   Text(
-                    "${trip.id}200 ل.س",
+                    "${trip.cost} ل.س",
                     style: const TextStyle(
                       fontWeight: FontWeight.w200,
                       fontSize: 16,

@@ -1,6 +1,6 @@
 abstract class StripeKeys {
   static const String secretKey =
-      'sk_test_51PnzpvC77cmF32GWc92zXZurV7x9FbDCUPoPBcLGvY4MV0r9MLmBwxrTn86k8OaPUlVltTpJCYqWaLzbXSBqU5g100elGui8X1';
+      'sk_test_51PYBWYEHNPXRJDcC66YIwDdpkt021TsKUq4NXvIwdc0DfMujyZmgdHqhDXgxEVnSCYs3Epp7qpPZtC2fs3bywrhl00wN6be2vV';
   static const String publishableKey =
-      "pk_test_51PnzpvC77cmF32GWrPcRAq6RjAFJtV8zlNHtLCUejlGFXnFR0kxnTqzNtOAzU8Vpah7aGlW7ESaCShxpROWmDIb100r6Un1QAa";
+      "pk_test_51PYBWYEHNPXRJDcCFN2ptmqDupVyU2oEuzaCSpaoJKy9dQRutoiqkCLPOVjhAltgqqESS6WpPugmGcuinfUbt3MZ00D1AYyE0m";
 }

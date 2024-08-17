@@ -11,6 +11,10 @@ import 'data/stripe_payment/stripe_keys.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // StripePayment.setOptions(StripeOptions(
+  //     publishableKey: (StripeKeys.publishableKey),
+  //     merchantId: 'mohamad',
+  //     androidPayMode: 'test'));
   Stripe.publishableKey = StripeKeys.publishableKey;
   Stripe.merchantIdentifier = 'mohamad';
   await Stripe.instance.applySettings();

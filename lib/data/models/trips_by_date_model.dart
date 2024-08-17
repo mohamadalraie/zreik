@@ -29,6 +29,7 @@ class TripsByDateModel {
 
 class Trip {
   int? id;
+  int? cost;
   String? date;
   String? startTrip;
   String? endTrip;
@@ -39,6 +40,7 @@ class Trip {
 
   Trip(
       {this.id,
+      this.cost,
       this.date,
       this.startTrip,
       this.endTrip,
@@ -49,6 +51,7 @@ class Trip {
 
   Trip.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    cost = json['cost'];
     date = json['date'];
     startTrip = json['start_trip'];
     endTrip = json['end_trip'];
@@ -62,6 +65,7 @@ class Trip {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['cost'] = this.cost;
     data['date'] = this.date;
     data['start_trip'] = this.startTrip;
     data['end_trip'] = this.endTrip;

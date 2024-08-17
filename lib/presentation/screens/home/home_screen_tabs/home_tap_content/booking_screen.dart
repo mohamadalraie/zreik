@@ -286,17 +286,17 @@ class _BookingScreenState extends State<BookingScreen> {
                                 ),
                               ],
                             ),
-                            Row(
+                            const Row(
                               children: [
-                                const Icon(
+                                Icon(
                                   Icons.person_outline,
                                   size: 18,
                                   color: MyColors.myYellow,
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   width: 4,
                                 ),
-                                const Text(
+                                Text(
                                   "السائق: ",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w200,
@@ -306,9 +306,10 @@ class _BookingScreenState extends State<BookingScreen> {
                                   ),
                                 ),
                                 Text(
+                                  // todo edit it
                                   'f',
                                   // '${tripDetails.data!.tripDetails![0].driver!.fname} ${tripDetails.data!.tripDetails![0].driver!.lname}',
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontWeight: FontWeight.w200,
                                     fontSize: 14,
                                     fontFamily: "cairo",
@@ -337,7 +338,7 @@ class _BookingScreenState extends State<BookingScreen> {
                                   ),
                                 ),
                                 Text(
-                                  "${widget.trip.id} ل.س",
+                                  "${widget.trip.cost} ل.س",
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w200,
                                     fontSize: 14,
@@ -381,6 +382,7 @@ class _BookingScreenState extends State<BookingScreen> {
                         ),
                       ),
                       BookingForm(
+                        ticketCost: widget.trip.cost!,
                         trip: tripDetails,
                         passengers: [],
                         tripId: widget.trip.id!,

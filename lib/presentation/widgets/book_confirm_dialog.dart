@@ -5,6 +5,7 @@ import '../../constants/strings.dart';
 import '../../data/models/book_a_trip_model.dart';
 
 Widget bookConfirmDialog({
+  required int ticketCost,
   required List<Passengers> passengers,
   required int tripId,
   required BuildContext context,
@@ -36,7 +37,7 @@ Widget bookConfirmDialog({
             color: MyColors.myYellow,
             onPressed: () {
               Navigator.of(context).pushReplacementNamed(payForBookScreen,
-                  arguments: BookingArguments(passengers, tripId));
+                  arguments: BookingArguments(passengers, tripId, ticketCost));
             },
             child: const Text(
               "تأكيد",

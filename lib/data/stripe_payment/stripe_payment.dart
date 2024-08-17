@@ -1,12 +1,11 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:zreiq/constants/strings.dart';
+
 import 'package:zreiq/data/stripe_payment/stripe_keys.dart';
 
-abstract class StripePayment {
+abstract class StripePayments {
   static Future<void> makePayment(
       {required int amount, required String currency}) async {
     try {
@@ -29,11 +28,10 @@ abstract class StripePayment {
     var data = {
       "amount": amount,
       "currency": currency,
+      "payment_method": "pm_card_visa",
     };
 
     Dio dio = Dio();
-
-    print("before payment");
 
     var response =
         await dio.request('https://api.stripe.com/v1/payment_intents',
@@ -52,8 +50,8 @@ abstract class StripePayment {
               },
             ),
             data: data);
-    print('200 USD');
-    print(response.data);
+
+    print('client secret: ${response.data['client_secret']}');
     // return 'pi_3PoKs3C77cmF32GW1OORn2rk_secret_mCsoHN0TYyTP4BzGOWed487ro';
     return response.data['client_secret'];
   }
@@ -68,4 +66,48 @@ abstract class StripePayment {
           merchantDisplayName: 'mohamad'),
     );
   }
+
+  //
+  //
+  // static Future<void> generateToken() async {
+  //   var userStripeKey = StripeKeys.secretKey;
+  //   var dio = Dio();
+  //   var url =
+  //       'https://api.stripe.com/v1/tokens'; //https://api.stripe.com/v1/tokens
+  //   var data = {
+  //     "card[number]": "4242424242424242",
+  //     "card[exp_month]": "5",
+  //     "card[exp_year]": "2026",
+  //     "card[cvc]": "000",
+  //     // "card[name]": cardHolderName.value,
+  //   };
+  //   final headers = {
+  //     'accept': '*/*',
+  //     'Content-Type': 'application/json',
+  //     'Authorization': 'Bearer ${StripeKeys.secretKey}',
+  //   };
+  //
+  //   var response;
+  //   try {
+  //     response = await dio.request(
+  //       url,
+  //       options: Options(
+  //         method: 'POST',
+  //         headers: headers,
+  //       ),
+  //       // headers: headers,
+  //       // encoding: Encoding.getByName('utf-8'),
+  //       data: data,
+  //     );
+  //     print('GenerateTokenResponse : ${response.body}');
+  //     var cardResponse = json.decode(response.body);
+  //     if (response.body.contains('error')) {
+  //       //handle errors
+  //     } else {
+  //       print('GenerateCustomerToken : ${cardResponse['id']}');
+  //     }
+  //   } catch (e) {
+  //     print(e.toString());
+  //   }
+  // }
 }

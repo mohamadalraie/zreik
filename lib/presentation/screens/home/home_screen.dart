@@ -5,6 +5,7 @@ import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dar
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/home_tab.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/my_reservations_tab.dart';
+import '../../../constants/shared_preferences.dart';
 import '../../../data/apis/trips_by_date_api.dart';
 import '../../../data/repository/trips_by_date_repo.dart';
 
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(Prefs.getToken());
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(

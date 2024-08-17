@@ -14,13 +14,10 @@ class BookATripApi {
       'Content-Type': 'application/x-www-form-urlencoded',
       'Authorization': 'Bearer ${Prefs.getToken()}'
     };
-    model.stripeToken = "tok_visa";
     var data = model.toJson();
     var dio = Dio();
     String url = '${baseUrl}bookingTrip/$tripId';
-
-    print(model.toJson());
-
+    print("booking ${model.toJson()}");
     var response = await dio.request(
       url,
       options: Options(
@@ -42,8 +39,10 @@ class BookATripApi {
 
     if (response.statusCode == 200) {
       print(json.encode(response.data));
+      return true;
     } else {
       print(response.statusMessage);
+      return (response.data['msg']);
     }
   }
 }

@@ -50,7 +50,7 @@ class LoginScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         const Text(
-                          "البريد الالكتروني او رقم الهاتف",
+                          "البريد الالكتروني",
                           style: TextStyle(fontFamily: "cairo"),
                         ),
                         TextFormField(

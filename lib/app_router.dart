@@ -75,6 +75,7 @@ class AppRouter {
             value: bookATripCubit,
             // create: (context) => bookATripCubit,
             child: PayForBookingScreen(
+              ticketCost: bookingArguments.ticketCost,
               tripId: bookingArguments.tripId,
               passengers: bookingArguments.passengers,
             ),
@@ -94,6 +95,7 @@ class AppRouter {
 class BookingArguments {
   final List<Passengers> passengers;
   final int tripId;
+  final int ticketCost;
 
-  BookingArguments(this.passengers, this.tripId);
+  BookingArguments(this.passengers, this.tripId, this.ticketCost);
 }
