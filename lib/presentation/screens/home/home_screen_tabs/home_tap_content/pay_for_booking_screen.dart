@@ -163,7 +163,7 @@ class _PayForBookingScreenState extends State<PayForBookingScreen> {
                             vertical: 16.0, horizontal: 8),
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 10,
                             ),
                             const Row(
@@ -223,7 +223,7 @@ class _PayForBookingScreenState extends State<PayForBookingScreen> {
                                         fontFamily: "cairo",
                                         color: MyColors.myLightGrey),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 4,
                                   ),
                                   Row(
@@ -393,95 +393,125 @@ class _PayForBookingScreenState extends State<PayForBookingScreen> {
                                           number: numberController.text,
                                           month: monthController.text,
                                           year: yearController.text);
-                                  if (stripeToken != null) {
-                                    var isBooked = await BookATripApi()
-                                        .bookATrip(
-                                            model: BookATripRequestModel(
-                                                passengers: widget.passengers,
-                                                stripeToken: stripeToken),
-                                            tripId: widget.tripId);
-                                    if (isBooked == true) {
-                                      Navigator.of(context)
-                                          .pushReplacementNamed(homePage);
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              const AlertDialog(
-                                                title: Text(
-                                                  'تمت عملية الحجز بنجاح',
-                                                  style: TextStyle(
-                                                      fontFamily: "cairo",
-                                                      color: Colors.white),
-                                                ),
-                                                actions: [
-                                                  Text(
-                                                    '- تمت إضافة الحجز إلى قائمة حجوزاتي',
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text('طفي ال vpn وبعدا اكبس تم'),
+                                      actions: [
+                                        MaterialButton(
+                                          onPressed: () async {
+                                            if (stripeToken != null) {
+                                              var isBooked = await BookATripApi()
+                                                  .bookATrip(
+                                                      model:
+                                                          BookATripRequestModel(
+                                                              passengers: widget
+                                                                  .passengers,
+                                                              stripeToken:
+                                                                  stripeToken),
+                                                      tripId: widget.tripId);
+                                              if (isBooked == true) {
+                                                Navigator.of(context)
+                                                    .pushReplacementNamed(
+                                                        homePage);
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) =>
+                                                        const AlertDialog(
+                                                          title: Text(
+                                                            'تمت عملية الحجز بنجاح',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    "cairo",
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                          actions: [
+                                                            Text(
+                                                              '- تمت إضافة الحجز إلى قائمة حجوزاتي',
+                                                              style: TextStyle(
+                                                                  fontFamily:
+                                                                      "cairo",
+                                                                  color: MyColors
+                                                                      .myLightGrey,
+                                                                  fontSize: 12),
+                                                            ),
+                                                          ],
+                                                        ));
+                                              } else {
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) =>
+                                                        AlertDialog(
+                                                          title: const Text(
+                                                            'حدث خطأ ما',
+                                                            style: TextStyle(
+                                                                fontFamily:
+                                                                    "cairo",
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                          actions: [
+                                                            Text(
+                                                              '${isBooked.toString()}',
+                                                              style: const TextStyle(
+                                                                  fontFamily:
+                                                                      "cairo",
+                                                                  color: MyColors
+                                                                      .myLightGrey,
+                                                                  fontSize: 12),
+                                                            ),
+                                                          ],
+                                                        ));
+                                              }
+                                            } else {
+                                              showDialog(
+                                                context: context,
+                                                builder: (context) =>
+                                                    const AlertDialog(
+                                                  title: Text(
+                                                    'حدث خطأ ما',
                                                     style: TextStyle(
                                                         fontFamily: "cairo",
-                                                        color: MyColors
-                                                            .myLightGrey,
-                                                        fontSize: 12),
+                                                        color: Colors.white),
                                                   ),
-                                                ],
-                                              ));
-                                    } else {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                                title: const Text(
-                                                  'حدث خطأ ما',
-                                                  style: TextStyle(
-                                                      fontFamily: "cairo",
-                                                      color: Colors.white),
+                                                  actions: [
+                                                    Text(
+                                                      '- تأكد من اتصالك بالانترنت',
+                                                      style: TextStyle(
+                                                          fontFamily: "cairo",
+                                                          color: MyColors
+                                                              .myLightGrey,
+                                                          fontSize: 12),
+                                                    ),
+                                                    Text(
+                                                      '- تأكد من صحة رقم بطاقتك',
+                                                      style: TextStyle(
+                                                          fontFamily: "cairo",
+                                                          color: MyColors
+                                                              .myLightGrey,
+                                                          fontSize: 12),
+                                                    ),
+                                                    Text(
+                                                      '- تأكد من ادخال تاريخ الانتهاء بشكل صحيح',
+                                                      style: TextStyle(
+                                                          fontFamily: "cairo",
+                                                          color: MyColors
+                                                              .myLightGrey,
+                                                          fontSize: 12),
+                                                    ),
+                                                  ],
                                                 ),
-                                                actions: [
-                                                  Text(
-                                                    '${isBooked.toString()}',
-                                                    style: const TextStyle(
-                                                        fontFamily: "cairo",
-                                                        color: MyColors
-                                                            .myLightGrey,
-                                                        fontSize: 12),
-                                                  ),
-                                                ],
-                                              ));
-                                    }
-                                  } else {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => const AlertDialog(
-                                        title: Text(
-                                          'حدث خطأ ما',
-                                          style: TextStyle(
-                                              fontFamily: "cairo",
-                                              color: Colors.white),
-                                        ),
-                                        actions: [
-                                          Text(
-                                            '- تأكد من اتصالك بالانترنت',
-                                            style: TextStyle(
-                                                fontFamily: "cairo",
-                                                color: MyColors.myLightGrey,
-                                                fontSize: 12),
-                                          ),
-                                          Text(
-                                            '- تأكد من صحة رقم بطاقتك',
-                                            style: TextStyle(
-                                                fontFamily: "cairo",
-                                                color: MyColors.myLightGrey,
-                                                fontSize: 12),
-                                          ),
-                                          Text(
-                                            '- تأكد من ادخال تاريخ الانتهاء بشكل صحيح',
-                                            style: TextStyle(
-                                                fontFamily: "cairo",
-                                                color: MyColors.myLightGrey,
-                                                fontSize: 12),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  }
+                                              );
+                                            }
+                                          },
+                                          color: MyColors.myYellow,
+                                          child: Text('تم'),
+                                        )
+                                      ],
+                                    ),
+                                  );
+
                                   // StripePayments.makePayment(amount: cost, currency: 'USD');
 
                                   setState(() {});
