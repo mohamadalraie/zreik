@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const String baseUrl = 'http://192.168.1.2:8000/user/';
+const String baseUrl = 'http://192.168.1.106:8000/user/';
 
 //routes
 const String homePage = '/homepage';
@@ -18,6 +18,7 @@ const String moreTabOffical = '/homepage/moreTabOffical';
 const String profile = '/homepage/moreTabOffical/profile';
 const String profileEdit = '/homepage/moreTabOffical/profile/profileEdit';
 const String payForBookScreen = '/homepage/bookingForm/payForBooking';
+const String reservationTab = '/homepage/my_reservation_tab';
 
 //screen dimensions
 final double physicalHeight =

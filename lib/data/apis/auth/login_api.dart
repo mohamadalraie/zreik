@@ -12,7 +12,7 @@ class LoginApi {
     };
     var data = loginRequestModel.toJson();
     var dio = Dio();
-    String url = '${baseUrl}logout';
+    String url = '${baseUrl}login';
     var response = await dio.request(
       url,
       options: Options(

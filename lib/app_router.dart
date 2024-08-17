@@ -13,6 +13,7 @@ import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_conten
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/pay_for_booking_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/more_tap_offical.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/my_reservation_tab/my_reservations_tab.dart';
 import 'package:zreiq/presentation/screens/on_board_screen.dart';
 import 'package:zreiq/presentation/screens/splash_screen.dart';
 import 'business_logic/cubit/book_a_trip/book_a_trip_cubit.dart';
@@ -54,6 +55,9 @@ class AppRouter {
 
       case accountConfirmScreen:
         return MaterialPageRoute(builder: (_) => AccountConfirmationScreen());
+
+      case reservationTab:
+        return MaterialPageRoute(builder: (_) => MyReservationsTab());
 
       case bookingScreen:
         final Trip trip = settings.arguments as Trip;

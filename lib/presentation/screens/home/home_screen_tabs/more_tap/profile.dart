@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
+import 'package:zreiq/data/models/profile_model.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile_edit.dart';
 
 import '../../../../../constants/strings.dart';
+import '../../../../../data/apis/show_profile_api.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -12,18 +14,34 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  String firstName = 'أحمد';
-  String secoundName = 'أحمد';
-  String lastName = 'حافظ';
-  String numberCard = '03080152865';
-  String phoneNumber = '0943430343';
-  String email = 'ahmadhafez5454@gmail.com';
-  String date = '22-3-2001';
+  ProfileModel p1 = ProfileModel();
+  bool loading = true;
+
+
+  Future<void> gettrip() async {
+    p1 = await ShowProfileApi().showProfileApi();
+
+
+
+    loading = false;
+    setState(() {});
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    gettrip();
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: MyColors.myGrey,
-      body: Column(
+
+      body: loading ? Center(child: CircularProgressIndicator()) :
+      Column(
         children: [
           const SizedBox(height: 70),
           const Padding(
@@ -37,7 +55,7 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(firstName,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text( p1.data!.fname.toString(),style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -66,7 +84,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(secoundName,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text(p1.data!.mname.toString(),style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -95,7 +113,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(lastName,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text(p1.data!.lname.toString(),style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -125,7 +143,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(numberCard,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text(p1.data!.nationalNumber.toString(),style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -154,7 +172,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(phoneNumber,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text(p1.data!.phoneNumber.toString(),style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -183,7 +201,7 @@ class _ProfileState extends State<Profile> {
           SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(email,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text(p1.data!.email.toString(),style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -212,7 +230,8 @@ class _ProfileState extends State<Profile> {
          const SizedBox(height: 5),
           Center(
             child: Container(
-              child: Text(date,style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
+              child: Text(p1.data!.birthday.toString(),
+                style: TextStyle(fontFamily: "cairo",fontSize: 20,color: MyColors.myBlack),),
               height: 60,
               alignment: Alignment.centerRight * 0.86,
               width: myScreenWidth * 0.95,
@@ -235,10 +254,10 @@ class _ProfileState extends State<Profile> {
           Center(
             child: InkWell(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>  ProfileEdit(firstName: firstName , secoundName: secoundName, lastName: lastName,cardNumber: numberCard,phoneNumber: phoneNumber,email: email,)));
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) =>  ProfileEdit(firstName: firstName , secoundName: secoundName, lastName: lastName,cardNumber: numberCard,phoneNumber: phoneNumber,email: email,)));
               },
               child: Container(
                 child: Center(

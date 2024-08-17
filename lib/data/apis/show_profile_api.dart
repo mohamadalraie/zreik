@@ -1,22 +1,25 @@
+import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:zreiq/constants/strings.dart';
-import 'package:zreiq/presentation/widgets/toast.dart';
+import 'package:zreiq/data/models/my_trip_model.dart';
+import 'package:zreiq/data/models/profile_model.dart';
 
-import '../../../constants/shared_preferences.dart';
+import '../../constants/shared_preferences.dart';
+import '../../constants/strings.dart';
 
-class LogoutApi {
-  Future logout() async {
+
+class ShowProfileApi {
+  Future<dynamic> showProfileApi() async {
     var headers = {
       'Accept': 'application/json',
+
       'Authorization': 'Bearer ${Prefs.getToken()}',
     };
     var dio = Dio();
-    String url = '${baseUrl}logout';
-
+    String url = '${baseUrl}showProfile';
     var response = await dio.request(
       url,
       options: Options(
-        method: 'POST',
+        method: 'GET',
         headers: headers,
         validateStatus: (statusCode) {
           if (statusCode == null) {
@@ -30,14 +33,11 @@ class LogoutApi {
         },
       ),
     );
-
     if (response.statusCode == 200) {
-      print("user logout *_*");
-      return true;
+      print(json.encode(response.data));
+      return ProfileModel.fromJson(response.data);
     } else {
-      if (response.data['message'] != null) {
-        flutterToast(msg: response.data['message'].toString());
-      }
+      print(response.statusMessage);
     }
   }
 }
