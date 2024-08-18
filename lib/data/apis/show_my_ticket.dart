@@ -11,7 +11,7 @@ class ShowMyTicketApi {
       'Authorization': 'Bearer ${Prefs.getToken()}',
     };
     var dio = Dio();
-    String url = '${baseUrl}showTickets/1';
+    String url = '${baseUrl}showTickets/$bookId';
     var response = await dio.request(
       url,
       options: Options(
