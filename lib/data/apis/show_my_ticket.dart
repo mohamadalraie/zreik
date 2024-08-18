@@ -1,19 +1,17 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:zreiq/data/models/my_trip_model.dart';
-
+import 'package:zreiq/data/models/show_tickets.dart';
 import '../../constants/shared_preferences.dart';
 import '../../constants/strings.dart';
 
-
-class ShowMyReservationApi {
-  Future<dynamic> showMyReservationapi() async {
+class ShowMyTicketApi {
+  Future<dynamic> showMyTicketApi() async {
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${Prefs.getToken()}',
     };
     var dio = Dio();
-    String url = '${baseUrl}showMyBookings';
+    String url = '${baseUrl}showTickets';
     var response = await dio.request(
       url,
       options: Options(
@@ -33,7 +31,7 @@ class ShowMyReservationApi {
     );
     if (response.statusCode == 200) {
       print(json.encode(response.data));
-      return MyTripModel.fromJson(response.data);
+      return ShowTicket.fromJson(response.data);
     } else {
       print(response.statusMessage);
     }

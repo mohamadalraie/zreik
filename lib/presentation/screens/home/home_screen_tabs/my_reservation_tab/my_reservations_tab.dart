@@ -19,12 +19,15 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
   bool loading = true;
 
   Future<void> gettrip() async {
+    done.clear();
+    waitandprogress.clear();
+
     trip11 = await ShowMyReservationApi().showMyReservationapi();
     for (var trip in trip11.data!) {
       if (trip.trip!.status!.toLowerCase() == 'wait' ||
           trip.trip!.status!.toLowerCase() == 'progress') {
         waitandprogress.add(trip);
-      } else if (trip.trip!.status == 'done') {
+      } else if (trip.trip!.status!.toLowerCase() == 'done') {
         done.add(trip);
       }
     }

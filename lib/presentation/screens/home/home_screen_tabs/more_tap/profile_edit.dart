@@ -1,41 +1,73 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
+import 'package:zreiq/presentation/screens/home/home_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile.dart';
+import 'package:zreiq/presentation/widgets/toast.dart';
 
-class ProfileEdit extends StatelessWidget {
-  TextEditingController firstNameCo = TextEditingController();
+import '../../../../../data/apis/update_profile.dart';
+import '../../../../../data/models/register_model.dart';
+import '../../../../../data/models/update_profile.dart';
 
-  TextEditingController secoundNameCo = TextEditingController();
+class ProfileEdit extends StatefulWidget {
+  final String? firstName;
+  final String? secoundName;
+  final String? lastName;
+  final String? cardNumber;
+  final String? phoneNumber;
+  final String? email;
+  final String? birthdate;
 
-  TextEditingController lastNameco = TextEditingController();
+  ProfileEdit(
+      {Key? key,
+      this.firstName,
+      this.secoundName,
+      this.lastName,
+      this.phoneNumber,
+      this.cardNumber,
+      this.email,
+      this.birthdate})
+      : super(key: key);
 
-  TextEditingController cardNumberCo = TextEditingController();
+  @override
+  State<ProfileEdit> createState() => _ProfileEditState();
+}
 
-  TextEditingController phoneNumberCo = TextEditingController();
+class _ProfileEditState extends State<ProfileEdit> {
+  late TextEditingController firstNameCo;
+  late TextEditingController secoundNameCo;
+  late TextEditingController lastNameco;
+  late TextEditingController cardNumberCo;
+  late TextEditingController phoneNumberCo;
+  late TextEditingController emailco;
+  late TextEditingController birthdateco;
 
-  TextEditingController emailCo = TextEditingController();
+  @override
+  void initState() {
+    super.initState();
+    firstNameCo = TextEditingController(text: widget.firstName ?? "");
+    secoundNameCo = TextEditingController(text: widget.secoundName ?? "");
+    lastNameco = TextEditingController(text: widget.lastName ?? "");
+    cardNumberCo = TextEditingController(text: widget.cardNumber ?? "");
+    phoneNumberCo = TextEditingController(text: widget.phoneNumber ?? "");
+    emailco = TextEditingController(text: widget.email ?? "");
+    birthdateco = TextEditingController(text: widget.birthdate ?? "");
+  }
 
-  final String firstName;
-  final String secoundName;
-  final String lastName;
-  final String cardNumber;
-  final String phoneNumber;
-  final String email;
-
-   ProfileEdit(
-      {super.key,
-      required this.firstName,
-      required this.secoundName,
-      required this.lastName,
-      required this.phoneNumber,
-      required this.cardNumber,
-      required this.email});
-
+  @override
+  void dispose() {
+    firstNameCo.dispose();
+    secoundNameCo.dispose();
+    lastNameco.dispose();
+    cardNumberCo.dispose();
+    phoneNumberCo.dispose();
+    emailco.dispose();
+    birthdateco.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: MyColors.myGrey,
       body: SingleChildScrollView(
@@ -43,8 +75,8 @@ class ProfileEdit extends StatelessWidget {
           children: [
             const SizedBox(height: 90),
             const Padding(
-              padding:  EdgeInsets.only(left: 270),
-              child:  Text(
+              padding: EdgeInsets.only(left: 270),
+              child: Text(
                 ":الإسم الأول",
                 style: TextStyle(
                     fontSize: 12, fontFamily: "cairo", color: Colors.white),
@@ -60,8 +92,7 @@ class ProfileEdit extends StatelessWidget {
                 ),
                 child: TextFormField(
                   controller: firstNameCo,
-                  style: TextStyle(
-
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -69,14 +100,12 @@ class ProfileEdit extends StatelessWidget {
                   ),
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
-                    hintText: firstName,
-                    hintStyle: TextStyle(color: Colors.black12, fontSize: 20, fontFamily: "Cairo",),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                   ),
@@ -86,14 +115,14 @@ class ProfileEdit extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Padding(
-              padding:  EdgeInsets.only(left: 270),
-              child:  Text(
+              padding: EdgeInsets.only(left: 270),
+              child: Text(
                 ":الإسم الثاني",
                 style: TextStyle(
                     fontSize: 12, fontFamily: "cairo", color: Colors.white),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Center(
               child: Container(
                 width: myScreenWidth * 0.95,
@@ -103,7 +132,7 @@ class ProfileEdit extends StatelessWidget {
                 ),
                 child: TextFormField(
                   controller: secoundNameCo,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -111,14 +140,18 @@ class ProfileEdit extends StatelessWidget {
                   ),
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
-                    hintText: secoundName,
-                    hintStyle: TextStyle(color: Colors.black12, fontSize: 20, fontFamily: "Cairo",),
+                    hintText: 'أدخل الإسم الثاني',
+                    hintStyle: const TextStyle(
+                      color: Colors.black12,
+                      fontSize: 20,
+                      fontFamily: "Cairo",
+                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                   ),
@@ -128,14 +161,14 @@ class ProfileEdit extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Padding(
-              padding:  EdgeInsets.only(left: 270),
-              child:  Text(
+              padding: EdgeInsets.only(left: 270),
+              child: Text(
                 ":إسم العائلة",
                 style: TextStyle(
                     fontSize: 12, fontFamily: "cairo", color: Colors.white),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Center(
               child: Container(
                 width: myScreenWidth * 0.95,
@@ -145,7 +178,7 @@ class ProfileEdit extends StatelessWidget {
                 ),
                 child: TextFormField(
                   controller: lastNameco,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -153,14 +186,18 @@ class ProfileEdit extends StatelessWidget {
                   ),
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
-                    hintText: lastName,
-                    hintStyle: TextStyle(color: Colors.black12, fontSize: 20, fontFamily: "Cairo",),
+                    hintText: 'أدخل إسم العائلة',
+                    hintStyle: const TextStyle(
+                      color: Colors.black12,
+                      fontSize: 20,
+                      fontFamily: "Cairo",
+                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                   ),
@@ -170,14 +207,14 @@ class ProfileEdit extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Padding(
-              padding:  EdgeInsets.only(left: 270),
-              child:  Text(
+              padding: EdgeInsets.only(left: 270),
+              child: Text(
                 ":الرقم الوطني",
                 style: TextStyle(
                     fontSize: 12, fontFamily: "cairo", color: Colors.white),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Center(
               child: Container(
                 width: myScreenWidth * 0.95,
@@ -188,8 +225,7 @@ class ProfileEdit extends StatelessWidget {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   controller: cardNumberCo,
-                  style: TextStyle(
-
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -197,14 +233,18 @@ class ProfileEdit extends StatelessWidget {
                   ),
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
-                    hintText: cardNumber,
-                    hintStyle: TextStyle(color: Colors.black12, fontSize: 20, fontFamily: "Cairo",),
+                    hintText: 'أدخل الرقم الوطني',
+                    hintStyle: const TextStyle(
+                      color: Colors.black12,
+                      fontSize: 20,
+                      fontFamily: "Cairo",
+                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                   ),
@@ -214,14 +254,14 @@ class ProfileEdit extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             const Padding(
-              padding:  EdgeInsets.only(left: 270),
-              child:  Text(
+              padding: EdgeInsets.only(left: 270),
+              child: Text(
                 ":رقم الموبايل",
                 style: TextStyle(
                     fontSize: 12, fontFamily: "cairo", color: Colors.white),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Center(
               child: Container(
                 width: myScreenWidth * 0.95,
@@ -232,7 +272,7 @@ class ProfileEdit extends StatelessWidget {
                 child: TextFormField(
                   keyboardType: TextInputType.number,
                   controller: phoneNumberCo,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -240,14 +280,18 @@ class ProfileEdit extends StatelessWidget {
                   ),
                   textAlign: TextAlign.right,
                   decoration: InputDecoration(
-                    hintText: phoneNumber,
-                    hintStyle: TextStyle(color: Colors.black12, fontSize: 20, fontFamily: "Cairo",),
+                    hintText: 'أدخل رقم الموبايل',
+                    hintStyle: const TextStyle(
+                      color: Colors.black12,
+                      fontSize: 20,
+                      fontFamily: "Cairo",
+                    ),
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
+                      borderSide: const BorderSide(color: Colors.black),
                       borderRadius: BorderRadius.circular(33),
                     ),
                   ),
@@ -255,64 +299,39 @@ class ProfileEdit extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 12),
-            const Padding(
-              padding:  EdgeInsets.only(left: 290),
-              child:  Text(
-                ":الإيميل",
-                style: TextStyle(
-                    fontSize: 12, fontFamily: "cairo", color: Colors.white),
-              ),
-            ),
-            SizedBox(height: 5),
-            Center(
-              child: Container(
-                width: myScreenWidth * 0.95,
-                decoration: BoxDecoration(
-                  color: MyColors.myYellow,
-                  borderRadius: BorderRadius.circular(33),
-                ),
-                child: TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  controller: emailCo,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Cairo',
-                  ),
-                  textAlign: TextAlign.right,
-                  decoration: InputDecoration(
-                    hintText: email,
-                    hintStyle: TextStyle(color: Colors.black12, fontSize: 20, fontFamily: "Cairo",),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(33),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black),
-                      borderRadius: BorderRadius.circular(33),
-                    ),
-                  ),
-                  maxLines: 1,
-                ),
-              ),
-            ),
-            SizedBox(height: 50),
+            const SizedBox(height: 50),
             Center(
               child: InkWell(
-                onTap: () {
-                  Navigator.push(
+                onTap: () async {
+                  UpdateProfileModel updateProfileModel = UpdateProfileModel(
+                    data: Data(
+                        fname: firstNameCo.text,
+                        mname: secoundNameCo.text,
+                        lname: lastNameco.text,
+                        phoneNumber: phoneNumberCo.text,
+                        nationalNumber: int.tryParse(cardNumberCo.text),
+                        email: emailco.text,
+                        birthday: birthdateco.text),
+                  );
+                  bool success = await UpdateProfileApi()
+                      .updateProfileApi(updateProfileModel);
+
+                  if (success) {
+                    Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) =>  Profile()));
+                      MaterialPageRoute(builder: (context) => Profile()),
+                    );
+                    print("hiiiiiiiiiiiiiii");
+                  } else {
+                    flutterToast(msg: "nothing");
+                  }
                 },
                 child: Container(
                   child: Center(
                       child: Text(
-                        "حفظ التعديل",
-                        style: TextStyle(fontFamily: "cairo", fontSize: 20),
-                      )),
+                    "حفظ التعديل",
+                    style: TextStyle(fontFamily: "cairo", fontSize: 20),
+                  )),
                   height: 50,
                   width: myScreenWidth * 0.5,
                   decoration: BoxDecoration(
