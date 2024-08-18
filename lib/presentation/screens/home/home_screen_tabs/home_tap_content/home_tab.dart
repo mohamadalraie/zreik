@@ -7,6 +7,7 @@ import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/data/apis/add_alert_api.dart';
 import 'package:zreiq/data/apis/search_for_trip_api.dart';
 import 'package:zreiq/data/repository/search_for_trip_repo.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/notifications_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/search_results.dart';
 import 'package:zreiq/presentation/widgets/drop_down_button.dart';
 import 'package:zreiq/presentation/widgets/toast.dart';
@@ -63,7 +64,10 @@ class _HomeTabState extends State<HomeTab> {
         ),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => NotificationsScreen()));
+              },
               icon: const Icon(
                 CupertinoIcons.bell_fill,
                 size: 26,
