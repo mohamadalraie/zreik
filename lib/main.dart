@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
@@ -11,12 +13,9 @@ import 'data/stripe_payment/stripe_keys.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // StripePayment.setOptions(StripeOptions(
-  //     publishableKey: (StripeKeys.publishableKey),
-  //     merchantId: 'mohamad',
-  //     androidPayMode: 'test'));
   Stripe.publishableKey = StripeKeys.publishableKey;
   Stripe.merchantIdentifier = 'mohamad';
+  await Firebase.initializeApp();
   await Stripe.instance.applySettings();
 
   await Prefs.init();

@@ -6,12 +6,10 @@ import 'package:zreiq/data/models/profile_model.dart';
 import '../../constants/shared_preferences.dart';
 import '../../constants/strings.dart';
 
-
 class ShowProfileApi {
   Future<dynamic> showProfileApi() async {
     var headers = {
       'Accept': 'application/json',
-
       'Authorization': 'Bearer ${Prefs.getToken()}',
     };
     var dio = Dio();
@@ -25,7 +23,9 @@ class ShowProfileApi {
           if (statusCode == null) {
             return false;
           }
-          if (statusCode == 401) {
+          if (statusCode == 500) {
+            return true;
+          } else if (statusCode == 403) {
             return true;
           } else {
             return statusCode >= 200 && statusCode < 300;
