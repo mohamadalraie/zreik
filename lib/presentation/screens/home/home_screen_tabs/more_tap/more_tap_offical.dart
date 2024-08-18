@@ -34,7 +34,7 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
                   fontSize: 14,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               MaterialButton(
@@ -94,41 +94,6 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
                     SizedBox(width: 15),
                     Text(
                       "الملف الشخصي",
-                      style: TextStyle(
-                          color: MyColors.myBlack,
-                          fontSize: 25,
-                          fontFamily: "cairo"),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(height: 30),
-            InkWell(
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Profile()));
-              },
-              child: Container(
-                height: 60,
-                width: myScreenWidth * 0.95,
-                decoration: BoxDecoration(
-                  color: MyColors.myYellow,
-                  borderRadius: BorderRadius.circular(33),
-                ),
-                child: const Row(
-                  children: [
-                    SizedBox(
-                      width: 47,
-                    ),
-                    Icon(
-                      Icons.favorite,
-                      size: 40,
-                      color: MyColors.myBlack,
-                    ),
-                    SizedBox(width: 15),
-                    Text(
-                      "الرحلات المفضلة",
                       style: TextStyle(
                           color: MyColors.myBlack,
                           fontSize: 25,

@@ -5,7 +5,6 @@ import 'package:zreiq/presentation/widgets/show_trip.dart';
 import '../../../../../constants/shared_preferences.dart';
 import '../../../../../constants/strings.dart';
 import '../../../../../data/models/my_trip_model.dart';
-import '../../../../widgets/access_alert.dart';
 
 class MyReservationsTab extends StatefulWidget {
   const MyReservationsTab({super.key});
@@ -112,26 +111,14 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
           children: [
             loading
                 ? Center(child: CircularProgressIndicator())
-                : trip11.data == null || trip11.data!.isEmpty
-                    ? Center(
-                        child: Container(
-                          height: 50,
-                          width: 350,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: MyColors.myYellow),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 40),
-                            child: Center(
-                              child: Text(
-                                'لا يوجد لديك رحلات حالية',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22,
-                                    fontFamily: "cairo"),
-                              ),
-                            ),
-                          ),
+                : waitandprogress.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'لا يوجد لديك رحلات حالية',
+                          style: TextStyle(
+                              color: MyColors.myLightGrey,
+                              fontSize: 14,
+                              fontFamily: "cairo"),
                         ),
                       )
                     : RefreshIndicator(
@@ -144,27 +131,15 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
                             }),
                       ),
             loading
-                ? Center(child: CircularProgressIndicator())
-                : trip11.data == null || trip11.data!.isEmpty
-                    ? Center(
-                        child: Container(
-                          height: 50,
-                          width: 350,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: MyColors.myYellow),
-                          child: const Padding(
-                            padding: EdgeInsets.only(left: 40),
-                            child: Center(
-                              child: Text(
-                                'لا يوجد لديك رحلات سابقة',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 22,
-                                    fontFamily: "cairo"),
-                              ),
-                            ),
-                          ),
+                ? const Center(child: CircularProgressIndicator())
+                : done.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'لا يوجد لديك رحلات سابقة',
+                          style: TextStyle(
+                              color: MyColors.myLightGrey,
+                              fontSize: 14,
+                              fontFamily: "cairo"),
                         ),
                       )
                     : RefreshIndicator(
