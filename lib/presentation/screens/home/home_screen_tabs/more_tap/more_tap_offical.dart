@@ -65,7 +65,6 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
         child: Column(
           children: [
             const Image(
-              height: 300,
               image: AssetImage("assets/images/12.png"),
             ),
             const SizedBox(height: 1),
