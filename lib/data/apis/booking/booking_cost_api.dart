@@ -23,6 +23,16 @@ class BookingCostApi {
       options: Options(
         method: 'POST',
         headers: headers,
+        validateStatus: (statusCode) {
+          if (statusCode == null) {
+            return false;
+          }
+          if (statusCode == 422 || statusCode == 500) {
+            return true;
+          } else {
+            return statusCode >= 200 && statusCode < 300;
+          }
+        },
       ),
       data: data,
     );

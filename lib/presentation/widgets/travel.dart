@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
+import 'package:zreiq/presentation/widgets/access_alert.dart';
+import '../../constants/shared_preferences.dart';
 import '../../constants/strings.dart';
 
 Widget travel(Trip trip, BuildContext context) {
@@ -155,7 +157,12 @@ Widget travel(Trip trip, BuildContext context) {
             padding: const EdgeInsets.all(8),
             child: MaterialButton(
               onPressed: () {
-                Navigator.of(context).pushNamed(bookingScreen, arguments: trip);
+                if (Prefs.getToken() == null || Prefs.getToken() == '') {
+                  accessAlert(context);
+                } else {
+                  Navigator.of(context)
+                      .pushNamed(bookingScreen, arguments: trip);
+                }
               },
               child: Container(
                   alignment: Alignment.center,

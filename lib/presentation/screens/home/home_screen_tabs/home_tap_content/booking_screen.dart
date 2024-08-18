@@ -286,17 +286,17 @@ class _BookingScreenState extends State<BookingScreen> {
                                 ),
                               ],
                             ),
-                            const Row(
+                            Row(
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.person_outline,
                                   size: 18,
                                   color: MyColors.myYellow,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 4,
                                 ),
-                                Text(
+                                const Text(
                                   "السائق: ",
                                   style: TextStyle(
                                     fontWeight: FontWeight.w200,
@@ -306,10 +306,8 @@ class _BookingScreenState extends State<BookingScreen> {
                                   ),
                                 ),
                                 Text(
-                                  // todo edit it
-                                  'f',
-                                  // '${tripDetails.data!.tripDetails![0].driver!.fname} ${tripDetails.data!.tripDetails![0].driver!.lname}',
-                                  style: TextStyle(
+                                  '${tripDetails.data!.tripDetails![0].driver!.fname} ${tripDetails.data!.tripDetails![0].driver!.lname}',
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.w200,
                                     fontSize: 14,
                                     fontFamily: "cairo",

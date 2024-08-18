@@ -32,12 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
     tripsByDateCubit = TripsByDateCubit(tripsByDateRepository);
 
     tabs = [
-      BlocProvider(
-        create: (BuildContext context) => tripsByDateCubit,
+      BlocProvider.value(
+        value: tripsByDateCubit,
         child: const HomeTab(),
       ),
       const MyReservationsTab(),
-           const MoreTapOffical()
+      const MoreTapOffical()
     ];
   }
 

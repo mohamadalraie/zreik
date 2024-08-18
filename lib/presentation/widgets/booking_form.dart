@@ -365,9 +365,9 @@ class _BookingFormState extends State<BookingForm> {
                             onPressed: () {
                               if (bus.selectedChair == 0) {
                                 flutterToast(msg: "عليك اختيار مقعدك");
+                              } else if (formKey.currentState!.validate()) {
                                 chairController.text =
                                     bus.selectedChair.toString();
-                              } else if (formKey.currentState!.validate()) {
                                 Passengers p = Passengers(
                                     firstName: fNameController.text,
                                     midName: mNameController.text,
@@ -382,6 +382,7 @@ class _BookingFormState extends State<BookingForm> {
 
                                 widget.trip.data!.unavailableChair!
                                     .add(bus.selectedChair);
+
                                 Navigator.of(context)
                                     .pushReplacement(MaterialPageRoute(
                                   builder: (context) => BlocProvider(
@@ -407,7 +408,7 @@ class _BookingFormState extends State<BookingForm> {
                         padding: const EdgeInsets.all(8.0),
                         child: MaterialButton(
                             color: MyColors.myYellow,
-                            onPressed: () {
+                            onPressed: () async {
                               if (bus.selectedChair == 0) {
                                 flutterToast(msg: "عليك اختيار مقعدك");
                               } else if (formKey.currentState!.validate()) {
@@ -427,20 +428,27 @@ class _BookingFormState extends State<BookingForm> {
                                 }
 
                                 widget.passengers.last = p;
+                                bool isConfirmed = false;
 
-                                showDialog(
+                                BookConfirmDialog b = BookConfirmDialog();
+
+                                await showDialog(
                                     context: context,
-                                    builder: (context) => bookConfirmDialog(
+                                    builder: (context) => b.bookConfirmDialog(
                                         ticketCost: widget.ticketCost,
                                         passengers: widget.passengers,
                                         tripId: widget.tripId,
                                         context: context));
-                                Navigator.of(context).pushReplacementNamed(
-                                    payForBookScreen,
-                                    arguments: BookingArguments(
-                                        widget.passengers,
-                                        widget.tripId,
-                                        widget.ticketCost));
+                                isConfirmed = b.isConfirmed;
+
+                                if (isConfirmed) {
+                                  Navigator.of(context).pushReplacementNamed(
+                                      payForBookScreen,
+                                      arguments: BookingArguments(
+                                          widget.passengers,
+                                          widget.tripId,
+                                          widget.ticketCost));
+                                }
                               }
                             },
                             child: const Text(

@@ -122,7 +122,7 @@ class _PayForBookingScreenState extends State<PayForBookingScreen> {
                             TableCell(
                               child: Center(
                                 child: Text(
-                                  '$cost',
+                                  '${widget.ticketCost * widget.passengers.length}',
                                   style: const TextStyle(color: Colors.white),
                                 ),
                               ),

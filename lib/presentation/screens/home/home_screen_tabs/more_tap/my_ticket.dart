@@ -6,8 +6,10 @@ import '../../../../../data/models/show_tickets.dart';
 import '../../../../widgets/ticket.dart';
 
 class MyTicket extends StatefulWidget {
-  const MyTicket({super.key,required this.bookid});
-final int? bookid;
+  const MyTicket({super.key, required this.bookid});
+
+  final int? bookid;
+
   @override
   State<MyTicket> createState() => _MyTicketState();
 }
@@ -17,7 +19,7 @@ class _MyTicketState extends State<MyTicket> {
   bool loading = true;
 
   Future<void> getticket() async {
-    trip1 = await ShowMyTicketApi().showMyTicketApi(bookId: widget.bookid! );
+    trip1 = await ShowMyTicketApi().showMyTicketApi(bookId: widget.bookid!);
     loading = false;
     setState(() {});
   }
@@ -33,9 +35,21 @@ class _MyTicketState extends State<MyTicket> {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: MyColors.myBlack,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: MyColors.myYellow,
+          title: const Text(
+            'تذاكري',
+            style: TextStyle(
+              fontFamily: "cairo",
+              fontWeight: FontWeight.bold,
+              color: MyColors.myGrey,
+              fontSize: 14,
+            ),
+          ),
+        ),
         body: loading
-            ? Center(child: CircularProgressIndicator())
+            ? const Center(child: CircularProgressIndicator())
             : trip1.data == null || trip1.data!.isEmpty
                 ? Center(
                     child: Container(

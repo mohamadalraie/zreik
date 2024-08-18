@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/data/apis/show_my_reservation.dart';
 import 'package:zreiq/presentation/widgets/show_trip.dart';
+import '../../../../../constants/shared_preferences.dart';
+import '../../../../../constants/strings.dart';
 import '../../../../../data/models/my_trip_model.dart';
+import '../../../../widgets/access_alert.dart';
 
 class MyReservationsTab extends StatefulWidget {
   const MyReservationsTab({super.key});
@@ -44,9 +47,49 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
+    return DefaultTabController(length: 2, child: r());
+  }
+
+  Widget r() {
+    if (Prefs.getToken() == null || Prefs.getToken() == '') {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'عذرا عليك تسجيل الدخول أولا',
+                style: TextStyle(
+                  fontFamily: "cairo",
+                  fontWeight: FontWeight.bold,
+                  color: MyColors.myLightGrey,
+                  fontSize: 14,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              MaterialButton(
+                color: MyColors.myYellow,
+                onPressed: () {
+                  Navigator.of(context).pushNamed(loginScreen);
+                },
+                child: const Text(
+                  'تسجيل الدخول',
+                  style: TextStyle(
+                    fontFamily: "cairo",
+                    fontWeight: FontWeight.bold,
+                    color: MyColors.myLightGrey,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
+      return Scaffold(
         appBar: AppBar(
           backgroundColor: MyColors.myYellow,
           automaticallyImplyLeading: false,
@@ -135,7 +178,7 @@ class _MyReservationsTabState extends State<MyReservationsTab> {
                       ),
           ],
         ),
-      ),
-    );
+      );
+    }
   }
 }

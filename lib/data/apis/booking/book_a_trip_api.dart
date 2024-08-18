@@ -27,7 +27,7 @@ class BookATripApi {
           if (statusCode == null) {
             return false;
           }
-          if (statusCode == 500) {
+          if (statusCode == 409 || statusCode == 500) {
             return true;
           } else {
             return statusCode >= 200 && statusCode < 300;

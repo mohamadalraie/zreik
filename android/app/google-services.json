@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "816609022448",
-    "project_id": "zreq-notification",
-    "storage_bucket": "zreq-notification.appspot.com"
+    "project_number": "850202590171",
+    "project_id": "zreq123-75e54",
+    "storage_bucket": "zreq123-75e54.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:816609022448:android:4245558212caa794fd0d35",
+        "mobilesdk_app_id": "1:850202590171:android:cfe02362c6e7a40b44c5fe",
         "android_client_info": {
           "package_name": "com.example.zreiq"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyB97Pv5lsz1VFtzzF3KHVEdI7AIxCujl0o"
+          "current_key": "AIzaSyBMhD3SKFoKwn2Z444mpf4h11iY_KLUImM"
         }
       ],
       "services": {

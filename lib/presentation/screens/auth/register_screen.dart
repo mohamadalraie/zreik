@@ -7,6 +7,7 @@ import '../../../constants/my_colors.dart';
 import '../../../constants/strings.dart';
 import '../../../data/apis/auth/register_api.dart';
 import '../../widgets/time_picker.dart';
+import '../../widgets/toast.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
@@ -35,6 +36,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String birthDate = DateTime(2000).toString().split(" ")[0];
 
   var formKey = GlobalKey<FormState>();
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -340,6 +342,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 textColor: Colors.white,
                                 fontSize: 16.0);
                           } else if (formKey.currentState!.validate()) {
+                            isPressed = true;
+                            setState(() {});
                             RegisterModel registerData = RegisterModel(
                                 firstName: firstNameController.text,
                                 lastName: lastNameController.text,
@@ -356,19 +360,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (registered) {
                               Navigator.of(context)
                                   .pushReplacementNamed(homePage);
+                            } else {
+                              isPressed = false;
+                              setState(() {});
                             }
                           }
                         },
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            "تسجيل الحساب",
-                            style: TextStyle(
-                                fontFamily: "cairo",
-                                color: MyColors.myYellow,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
+                          child: isPressed
+                              ? const CircularProgressIndicator()
+                              : const Text(
+                                  "تسجيل الحساب",
+                                  style: TextStyle(
+                                      fontFamily: "cairo",
+                                      color: MyColors.myYellow,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
                         )),
                   )),
                 ],

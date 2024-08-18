@@ -7,13 +7,21 @@ import 'package:zreiq/presentation/widgets/toast.dart';
 
 import '../../../data/apis/auth/login_api.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
+
+  bool isPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +96,8 @@ class LoginScreen extends StatelessWidget {
                                 color: MyColors.myBlack,
                                 onPressed: () async {
                                   if (formKey.currentState!.validate()) {
+                                    isPressed = true;
+                                    setState(() {});
                                     LoginRequestModel loginRequestModel =
                                         LoginRequestModel(
                                             email: emailController.text,
@@ -98,22 +108,26 @@ class LoginScreen extends StatelessWidget {
                                       Navigator.of(context)
                                           .pushReplacementNamed(homePage);
                                     } else {
+                                      isPressed = false;
+                                      setState(() {});
                                       flutterToast(
                                           msg: "username or pass is not true");
                                     }
                                   }
                                 },
-                                child: const Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Text(
-                                    "تسجيل الدخول",
-                                    style: TextStyle(
-                                        fontFamily: "cairo",
-                                        color: MyColors.myYellow,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
+                                  child: isPressed
+                                      ? const CircularProgressIndicator()
+                                      : const Text(
+                                          "تسجيل الدخول",
+                                          style: TextStyle(
+                                              fontFamily: "cairo",
+                                              color: MyColors.myYellow,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
                                 )),
                           )),
                         ),

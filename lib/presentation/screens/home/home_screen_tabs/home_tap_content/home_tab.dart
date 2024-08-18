@@ -82,7 +82,7 @@ class _HomeTabState extends State<HomeTab> {
               backgroundColor: MyColors.myGrey,
               automaticallyImplyLeading: false,
               floating: true,
-              expandedHeight: myScreenHeight * 0.25 + 118,
+              expandedHeight: myScreenHeight * 0.25 + 140,
               flexibleSpace: FlexibleSpaceBar(
                 background: Column(
                   children: [
@@ -295,10 +295,8 @@ class _HomeTabState extends State<HomeTab> {
                                           Navigator.of(context).push(
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  BlocProvider<
-                                                      SearchForTripCubit>(
-                                                create: (context) =>
-                                                    searchForTripCubit,
+                                                  BlocProvider.value(
+                                                value: searchForTripCubit,
                                                 child: SearchResults(
                                                   from: fromSelectedValue!,
                                                   to: toSelectedValue!,

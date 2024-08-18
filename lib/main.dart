@@ -53,7 +53,9 @@ class ZreiqApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: loginScreen,
+      initialRoute: (Prefs.getToken() == null || Prefs.getToken() == '')
+          ? (Prefs.getFirstTime() == true ? loginScreen : onBoardScreen)
+          : homePage,
       onGenerateRoute: appRouter.generateRoute,
     );
   }

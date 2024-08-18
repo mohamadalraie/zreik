@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/data/models/profile_model.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile_edit.dart';
+
 import '../../../../../constants/strings.dart';
 import '../../../../../data/apis/show_profile_api.dart';
 
@@ -35,7 +36,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
       backgroundColor: MyColors.myGrey,
       body: loading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
                 const SizedBox(height: 70),
@@ -51,7 +52,7 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: Container(
                     child: Text(
-                      p1.data?.fname.toString()??"",
+                      p1.data!.fname.toString(),
                       style: TextStyle(
                           fontFamily: "cairo",
                           fontSize: 20,
@@ -87,7 +88,7 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: Container(
                     child: Text(
-                      p1.data?.mname.toString()??"",
+                      p1.data!.mname.toString(),
                       style: TextStyle(
                           fontFamily: "cairo",
                           fontSize: 20,
@@ -123,7 +124,7 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: Container(
                     child: Text(
-                      p1.data?.lname.toString()??"",
+                      p1.data!.lname.toString(),
                       style: TextStyle(
                           fontFamily: "cairo",
                           fontSize: 20,
@@ -159,7 +160,7 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: Container(
                     child: Text(
-                      p1.data?.nationalNumber.toString()??"",
+                      p1.data!.nationalNumber.toString(),
                       style: TextStyle(
                           fontFamily: "cairo",
                           fontSize: 20,
@@ -195,7 +196,7 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: Container(
                     child: Text(
-                      p1.data?.phoneNumber.toString()??"",
+                      p1.data!.phoneNumber.toString(),
                       style: TextStyle(
                           fontFamily: "cairo",
                           fontSize: 20,
@@ -267,7 +268,7 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: Container(
                     child: Text(
-                      p1.data?.birthday.toString()??"",
+                      p1.data!.birthday.toString(),
                       style: TextStyle(
                           fontFamily: "cairo",
                           fontSize: 20,
@@ -296,20 +297,10 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProfileEdit(
-                                    firstName: p1.data!.fname.toString(),
-                                    secoundName: p1.data!.mname.toString(),
-                                    lastName: p1.data!.lname.toString(),
-                                    cardNumber:
-                                        p1.data!.nationalNumber.toString(),
-                                    phoneNumber:
-                                        p1.data!.phoneNumber.toString(),
-                                    email: p1.data!.email.toString(),
-                                    birthdate: p1.data!.birthday.toString(),
-                                  )));
+                      // Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (context) =>  ProfileEdit(firstName: firstName , secoundName: secoundName, lastName: lastName,cardNumber: numberCard,phoneNumber: phoneNumber,email: email,)));
                     },
                     child: Container(
                       child: Center(

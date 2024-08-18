@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
 
+import '../../constants/shared_preferences.dart';
+
 class OnBoardScreen extends StatelessWidget {
   const OnBoardScreen({super.key});
 
@@ -86,7 +88,8 @@ class OnBoardScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pushNamed(loginScreen);
+                Prefs.setFirstTime(true);
+                Navigator.of(context).pushReplacementNamed(loginScreen);
               }),
           const SizedBox(
             height: 30,
