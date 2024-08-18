@@ -5,13 +5,13 @@ import '../../constants/shared_preferences.dart';
 import '../../constants/strings.dart';
 
 class ShowMyTicketApi {
-  Future<dynamic> showMyTicketApi() async {
+  Future<dynamic> showMyTicketApi({required int bookId}) async {
     var headers = {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${Prefs.getToken()}',
     };
     var dio = Dio();
-    String url = '${baseUrl}showTickets';
+    String url = '${baseUrl}showTickets/1';
     var response = await dio.request(
       url,
       options: Options(

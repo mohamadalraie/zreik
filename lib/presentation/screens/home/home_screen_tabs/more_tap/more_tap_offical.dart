@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/data/apis/auth/logout_api.dart';
-import 'package:zreiq/data/models/show_tickets.dart';
 import 'package:zreiq/presentation/screens/auth/login_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/who_we_are.dart';
 
 import 'my_ticket.dart';
 
@@ -23,7 +23,7 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned(
+         const Positioned(
             top: 0,
             left: 0,
             right: 0,
@@ -34,7 +34,7 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: 300),
+            margin: const EdgeInsets.only(top: 350),
             height: myScreenHeight - 300,
             width: myScreenWidth,
             decoration: const BoxDecoration(
@@ -76,48 +76,13 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
                 InkWell(
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const Profile()));
-                  },
-                  child: Container(
-                    height: 60,
-                    width: myScreenWidth * 0.95,
-                    decoration: BoxDecoration(
-                      color: MyColors.myYellow,
-                      borderRadius: BorderRadius.circular(33),
-                    ),
-                    child: const Row(
-                      children: [
-                        SizedBox(width: 47),
-                        Icon(
-                          Icons.speaker_notes_rounded,
-                          size: 40,
-                          color: MyColors.myBlack,
-                        ),
-                        SizedBox(width: 15),
-                        Text(
-                          "تذاكري",
-                          style: TextStyle(
-                              color: MyColors.myBlack,
-                              fontSize: 25,
-                              fontFamily: "cairo"),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>  MyTicket()));
+                            builder: (context) =>  WhoWeAre()));
                   },
                   child: Container(
                     height: 60,
@@ -143,7 +108,7 @@ class _MoreTapOfficalState extends State<MoreTapOffical> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 40),
                 InkWell(
                   onTap: () {
                     LogoutApi().logout();

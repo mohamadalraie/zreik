@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
+import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/my_ticket.dart';
 import '../../constants/strings.dart';
 import '../../data/models/my_trip_model.dart';
 
@@ -102,7 +103,7 @@ Widget travel11({required Data data, required BuildContext context}) {
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: 10),
                       const Text(
                         "حالة الرحلة",
                         style: TextStyle(
@@ -178,7 +179,35 @@ Widget travel11({required Data data, required BuildContext context}) {
                   )),
             ],
           ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: MaterialButton(
+              onPressed: () {
+                print(data.trip!.id);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  MyTicket(bookid: data.trip!.id,)));
 
+              },
+              child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    // color: MyColors.myGrey,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: MyColors.myYellow, width: 1),
+                  ),
+                  child: const Text(
+                    "عرض تذاكري في هذه الرحلة",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: MyColors.myYellow,
+                        fontSize: 16,
+                        fontFamily: "cairo"),
+                  )),
+            ),
+          ),
         ],
       ),
     ),

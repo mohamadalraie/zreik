@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
 import 'package:zreiq/constants/strings.dart';
+import 'package:zreiq/presentation/screens/auth/login_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/profile.dart';
 import 'package:zreiq/presentation/widgets/toast.dart';
@@ -319,7 +320,7 @@ class _ProfileEditState extends State<ProfileEdit> {
                   if (success) {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => Profile()),
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
                     );
                     print("hiiiiiiiiiiiiiii");
                   } else {
@@ -340,7 +341,19 @@ class _ProfileEditState extends State<ProfileEdit> {
                   ),
                 ),
               ),
-            )
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              "عندما تقوم بالضغط على زر حفظ التعديل",
+              style: TextStyle(
+                  fontSize: 12, fontFamily: "cairo", color: Colors.white),
+            ),
+            const SizedBox(height: 2),
+           const Text(
+              "سيتطلب منك اعادة تسجيل الدخول",
+              style: TextStyle(
+                  fontSize: 12, fontFamily: "cairo", color: Colors.white),
+            ),
           ],
         ),
       ),

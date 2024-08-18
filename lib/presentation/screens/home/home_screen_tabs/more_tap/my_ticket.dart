@@ -6,8 +6,8 @@ import '../../../../../data/models/show_tickets.dart';
 import '../../../../widgets/ticket.dart';
 
 class MyTicket extends StatefulWidget {
-  const MyTicket({super.key});
-
+  const MyTicket({super.key,required this.bookid});
+final int? bookid;
   @override
   State<MyTicket> createState() => _MyTicketState();
 }
@@ -17,7 +17,7 @@ class _MyTicketState extends State<MyTicket> {
   bool loading = true;
 
   Future<void> getticket() async {
-    trip1 = await ShowMyTicketApi().showMyTicketApi();
+    trip1 = await ShowMyTicketApi().showMyTicketApi(bookId: widget.bookid! );
     loading = false;
     setState(() {});
   }
