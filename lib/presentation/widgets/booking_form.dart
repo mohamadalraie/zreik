@@ -430,25 +430,25 @@ class _BookingFormState extends State<BookingForm> {
                                 widget.passengers.last = p;
                                 bool isConfirmed = false;
 
-                                BookConfirmDialog b = BookConfirmDialog();
+                                // BookConfirmDialog b = BookConfirmDialog();
 
-                                await showDialog(
-                                    context: context,
-                                    builder: (context) => b.bookConfirmDialog(
-                                        ticketCost: widget.ticketCost,
-                                        passengers: widget.passengers,
-                                        tripId: widget.tripId,
-                                        context: context));
-                                isConfirmed = b.isConfirmed;
+                                // await showDialog(
+                                //     context: context,
+                                //     builder: (context) => b.bookConfirmDialog(
+                                //         ticketCost: widget.ticketCost,
+                                //         passengers: widget.passengers,
+                                //         tripId: widget.tripId,
+                                //         context: context));
+                                // isConfirmed = b.isConfirmed;
 
-                                if (isConfirmed) {
+                                // if (isConfirmed) {
                                   Navigator.of(context).pushReplacementNamed(
                                       payForBookScreen,
                                       arguments: BookingArguments(
                                           widget.passengers,
                                           widget.tripId,
                                           widget.ticketCost));
-                                }
+                                // }
                               }
                             },
                             child: const Text(

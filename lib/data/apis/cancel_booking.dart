@@ -19,8 +19,18 @@ class CancelBooking {
     var response = await dio.request(
       url,
       options: Options(
-        method: 'POST',
+        method: 'GET',
         headers: headers,
+        validateStatus: (statusCode) {
+          if (statusCode == null) {
+            return false;
+          }
+          if (statusCode == 405) {
+            return true;
+          } else {
+            return statusCode >= 200 && statusCode < 300;
+          }
+        },
       ),
     );
 

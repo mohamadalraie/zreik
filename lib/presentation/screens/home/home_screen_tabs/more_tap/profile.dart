@@ -297,10 +297,10 @@ class _ProfileState extends State<Profile> {
                 Center(
                   child: InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //         builder: (context) =>  ProfileEdit(firstName: firstName , secoundName: secoundName, lastName: lastName,cardNumber: numberCard,phoneNumber: phoneNumber,email: email,)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>  ProfileEdit(firstName: p1.data!.fname , secoundName: p1.data!.mname, lastName: p1.data!.lname,cardNumber: p1.data!.nationalNumber.toString(),phoneNumber: p1.data!.phoneNumber,email: p1.data!.email,)));
                     },
                     child: Container(
                       child: Center(

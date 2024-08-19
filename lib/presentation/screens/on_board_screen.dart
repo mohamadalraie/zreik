@@ -42,10 +42,7 @@ class OnBoardScreen extends StatelessWidget {
               ),
             ),
           ),
-          TextFormField(
-            controller: baseUrlController,
-            decoration: const InputDecoration(hintText: 'baseUrl'),
-          ),
+
           const Spacer(),
           const Padding(
             padding: EdgeInsets.all(5.0),
@@ -95,10 +92,7 @@ class OnBoardScreen extends StatelessWidget {
               ),
               onPressed: () async {
                 await Prefs.setFirstTime(true);
-                if (!baseUrlController.text.isEmpty) {
-                  await Prefs.setBaseUrl(baseUrlController.text);
-                  baseUrl = await Prefs.getBaseUrl()!;
-                }
+
                 Navigator.of(context).pushReplacementNamed(
                     (Prefs.getToken() == null || Prefs.getToken() == '')
                         ? (Prefs.getFirstTime() == true

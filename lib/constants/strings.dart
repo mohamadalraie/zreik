@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-String baseUrl = 'http://192.168.1.2:8000/user/';
+ const String baseUrl = 'http://192.168.43.21:8000/user/';
 
 //routes
 const String homePage = '/homepage';

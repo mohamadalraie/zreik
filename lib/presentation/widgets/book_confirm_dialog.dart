@@ -20,16 +20,14 @@ class BookConfirmDialog {
         style: TextStyle(fontFamily: "cairo", color: Colors.white),
       ),
       content: SingleChildScrollView(
-        child: Column(
-          children: [
-            ListView.builder(
-              itemBuilder: (context, index) =>
-                  passengersInfo(passengers[index], index),
-              itemCount: passengers.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-            ),
-          ],
+        child: Expanded(
+          child: ListView.builder(
+            itemBuilder: (context, index) =>
+                passengersInfo(passengers[index], index),
+            itemCount: passengers.length,
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+          ),
         ),
       ),
       actions: [
