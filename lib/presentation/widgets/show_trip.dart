@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zreiq/constants/my_colors.dart';
+import 'package:zreiq/data/apis/cancel_booking.dart';
 import 'package:zreiq/data/models/trips_by_date_model.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/more_tap/my_ticket.dart';
 import '../../constants/strings.dart';
@@ -204,6 +205,30 @@ Widget travel11({required Data data, required BuildContext context}) {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: MyColors.myYellow,
+                        fontSize: 16,
+                        fontFamily: "cairo"),
+                  )),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: MaterialButton(
+              onPressed: () async {
+                await CancelBooking().cancelBooking(bookId: data.id!);
+              },
+              child: Container(
+                  alignment: Alignment.center,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    // color: MyColors.myGrey,
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: Colors.red, width: 1),
+                  ),
+                  child: const Text(
+                    "إلغاء الحجز",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red,
                         fontSize: 16,
                         fontFamily: "cairo"),
                   )),

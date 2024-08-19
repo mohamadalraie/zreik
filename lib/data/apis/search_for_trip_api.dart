@@ -12,7 +12,7 @@ class SearchForTripApi {
     var data = FormData.fromMap({'source': source, 'destination': destination});
 
     var dio = Dio();
-    const String url = '${baseUrl}searchAboutTrip';
+    String url = '${baseUrl}searchAboutTrip';
     var response = await dio.request(
       url,
       options: Options(
@@ -39,7 +39,7 @@ class SearchForTripApi {
         {'source': source, 'destination': destination, 'date': date});
 
     var dio = Dio();
-    const String url = '${baseUrl}searchAboutTrip';
+    String url = '${baseUrl}searchAboutTrip';
     var response = await dio.request(
       url,
       options: Options(

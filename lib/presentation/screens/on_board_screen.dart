@@ -9,7 +9,9 @@ class OnBoardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController baseUrlController = TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: MyColors.myYellow,
       body: Column(
         children: [
@@ -39,6 +41,10 @@ class OnBoardScreen extends StatelessWidget {
                 fontSize: 25,
               ),
             ),
+          ),
+          TextFormField(
+            controller: baseUrlController,
+            decoration: const InputDecoration(hintText: 'baseUrl'),
           ),
           const Spacer(),
           const Padding(
@@ -87,9 +93,18 @@ class OnBoardScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              onPressed: () {
-                Prefs.setFirstTime(true);
-                Navigator.of(context).pushReplacementNamed(loginScreen);
+              onPressed: () async {
+                await Prefs.setFirstTime(true);
+                if (!baseUrlController.text.isEmpty) {
+                  await Prefs.setBaseUrl(baseUrlController.text);
+                  baseUrl = await Prefs.getBaseUrl()!;
+                }
+                Navigator.of(context).pushReplacementNamed(
+                    (Prefs.getToken() == null || Prefs.getToken() == '')
+                        ? (Prefs.getFirstTime() == true
+                            ? loginScreen
+                            : onBoardScreen)
+                        : homePage);
               }),
           const SizedBox(
             height: 30,

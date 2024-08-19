@@ -29,10 +29,21 @@ dependencies:
   firebase_core: ^3.3.0
 
 
+
+
+
 dev_dependencies:
+
+
   flutter_test:
     sdk: flutter
 
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/big logo.png"
 
 
   flutter_lints: ^2.0.0

@@ -5,7 +5,9 @@ import 'package:zreiq/business_logic/cubit/search_for_trip/search_for_trip_cubit
 import 'package:zreiq/business_logic/cubit/trips_by_date/trips_by_date_cubit.dart';
 import 'package:zreiq/constants/strings.dart';
 import 'package:zreiq/data/apis/add_alert_api.dart';
+import 'package:zreiq/data/apis/notification_api.dart';
 import 'package:zreiq/data/apis/search_for_trip_api.dart';
+import 'package:zreiq/data/models/notification.dart';
 import 'package:zreiq/data/repository/search_for_trip_repo.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/notifications_screen.dart';
 import 'package:zreiq/presentation/screens/home/home_screen_tabs/home_tap_content/search_results.dart';

@@ -33,6 +33,7 @@ class LogoutApi {
 
     if (response.statusCode == 200) {
       print("user logout *_*");
+      Prefs.setToken('');
       return true;
     } else {
       if (response.data['message'] != null) {
